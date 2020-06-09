@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">CEGEP E-Learning</string>
+    <string name="enhance_your_knowledge">Enhance your knowledge</string>
+    <string name="cegep_n_e_learning">CEGEP \n E-Learning</string>
 </resources>

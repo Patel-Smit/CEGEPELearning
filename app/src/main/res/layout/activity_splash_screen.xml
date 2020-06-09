@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".SplashScreenActivity"
     android:orientation="vertical"
-    android:gravity="center">
+    android:gravity="center"
+    android:background="@drawable/gradient">
 
     <ImageView
         android:id="@+id/sp_iv_logo"
@@ -28,7 +29,7 @@
         android:fontFamily="@font/bungee_inline"
         android:text="@string/cegep_n_e_learning"
         android:textAlignment="center"
-        android:textColor="#000000"
+        android:textColor="#FFFFFF"
         android:textSize="38sp" />
 
     <TextView
@@ -39,7 +40,7 @@
         android:fontFamily="serif"
         android:text="@string/enhance_your_knowledge"
         android:textAlignment="center"
-        android:textColor="#000000"
+        android:textColor="#FFFFFF"
         android:textSize="15sp" />
 
 </LinearLayout>

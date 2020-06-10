@@ -46,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
                     Intent i = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(i);
                 } else {
-                    
+
                     //Set outline red
                     emailHolder.setBoxStrokeColor(getResources().getColor(R.color.colorRed));
                     passwordHolder.setBoxStrokeColor(getResources().getColor(R.color.colorRed));

@@ -42,10 +42,10 @@ public class LoginActivity extends AppCompatActivity {
                 Animation shake = AnimationUtils.loadAnimation(LoginActivity.this, R.anim.shake_animation);
                 String emailId = loginEmail.getText().toString();
                 String passwd = loginPassword.getText().toString();
-                if (emailId.equals("admin") && passwd.equals("password")) {
+                //if (emailId.equals("admin") && passwd.equals("password")) {
                     Intent i = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(i);
-                } else {
+                //} else {
 
                     //Set outline red
                     emailHolder.setBoxStrokeColor(getResources().getColor(R.color.colorRed));
@@ -56,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
                     emailHolder.startAnimation(shake);
                     loginPassword.startAnimation(shake);
                     passwordHolder.startAnimation(shake);
-                }
+                //}
             }
         });
 

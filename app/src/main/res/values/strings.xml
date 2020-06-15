@@ -7,4 +7,7 @@
     <string name="not_a_member_sign_up">Not a Member? Sign Up</string>
     <string name="forgot_password">Forgot Password?</string>
     <string name="password">Password</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="menu">Menu</string>
 </resources>

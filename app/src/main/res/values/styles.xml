@@ -20,4 +20,10 @@
         <item name="colorAccent">#00c6fb</item>
     </style>
 
+    <style name="MainActivityTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">#029ae4</item>
+        <item name="colorAccent">#00c6fb</item>
+    </style>
+
 </resources>

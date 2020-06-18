@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public static String ccity;
     public static String eemail;
     public static String ppassword;
+    public static String userId;
 
     TextView headerName, menuTitle;
 
@@ -59,6 +60,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         Intent intent = getIntent();
         final String userid = intent.getStringExtra("userID");
+
+        //to access in upload video frag
+        userId = intent.getStringExtra("userID");
 
         mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("users");
         mDatabaseReference.addValueEventListener(new ValueEventListener() {

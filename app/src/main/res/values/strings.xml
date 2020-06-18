@@ -10,4 +10,11 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="menu">Menu</string>
+    <string name="name">Name</string>
+    <string name="birthday">Birthday</string>
+    <string name="city">City</string>
+    <string name="sign_up">Sign up</string>
+    <string name="already_a_member_login">Already a Member? Login</string>
+    <string name="notifications">Notifications</string>
+    <string name="theme">Theme</string>
 </resources>

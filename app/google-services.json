@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "677153324029",
+    "firebase_url": "https://cegep-e-learning.firebaseio.com",
+    "project_id": "cegep-e-learning",
+    "storage_bucket": "cegep-e-learning.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:677153324029:android:4af37aae7a60f4793e3794",
+        "android_client_info": {
+          "package_name": "com.smit.cegepe_learning"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "677153324029-r0p15ch3q4h83t24qnrm8gg347kqiv0v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxGmurkOdUA_WuBiDukCPSHsvi3j-6uiM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "677153324029-r0p15ch3q4h83t24qnrm8gg347kqiv0v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

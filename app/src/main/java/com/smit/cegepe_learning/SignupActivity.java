@@ -16,12 +16,16 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class SignupActivity extends AppCompatActivity {
-    EditText signupEmail, signupPassword;
+    EditText signupName, signupBirthday, signupCity, signupEmail, signupPassword;
     Button btnSignup;
     TextView tvSignin;
     FirebaseAuth mFirebaseAuth;
+    FirebaseDatabase rootNode;
+    DatabaseReference reference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +33,9 @@ public class SignupActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
 
         mFirebaseAuth = FirebaseAuth.getInstance();
+        signupName = findViewById(R.id.signup_et_name);
+        signupBirthday = findViewById(R.id.signup_et_DOB);
+        signupCity = findViewById(R.id.signup_et_city);
         signupEmail = findViewById(R.id.signup_et_email);
         signupPassword = findViewById(R.id.signup_et_password);
         btnSignup = findViewById(R.id.signup_btn_signup);
@@ -36,8 +43,14 @@ public class SignupActivity extends AppCompatActivity {
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String emailId = signupEmail.getText().toString();
-                String passwd = signupPassword.getText().toString();
+                rootNode = FirebaseDatabase.getInstance();
+                reference = rootNode.getReference("users");
+
+                final String namee = signupName.getText().toString();
+                final String birthdayy = signupBirthday.getText().toString();
+                final String cityy = signupCity.getText().toString();
+                final String emailId = signupEmail.getText().toString();
+                final String passwd = signupPassword.getText().toString();
 
                 if (emailId.isEmpty()) {
                     signupEmail.setError("Please enter email address");
@@ -65,6 +78,10 @@ public class SignupActivity extends AppCompatActivity {
                                         }
                                     }
                                 });
+
+                                String userid = mFirebaseUser.getUid();
+                                UserHelperClass helperClass = new UserHelperClass(namee, birthdayy, cityy, emailId, passwd);
+                                reference.child(userid).setValue(helperClass);
                                 FirebaseAuth.getInstance().signOut();
                                 startActivity(new Intent(SignupActivity.this, LoginActivity.class));
                             }

@@ -15,15 +15,17 @@
         tools:ignore="ContentDescription" />
 
     <TextView
+        android:id="@+id/header_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Smitkumar Patel"
+        android:text="User"
         android:textSize="22sp"
-        android:textColor="#fff" />
+        android:textColor="#fff"
+        android:textStyle="bold" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#fff"
-        android:text="Premium User" />
+        android:text="User" />
 </LinearLayout>

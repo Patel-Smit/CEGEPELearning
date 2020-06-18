@@ -56,6 +56,7 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.makeText(LoginActivity.this, "Please verify your email before signing in", Toast.LENGTH_SHORT).show();
                     } else {
                         Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                        i.putExtra("userID", mFirebaseAuth.getCurrentUser().getUid());
                         startActivity(i);
                     }
                 } else {
@@ -89,6 +90,7 @@ public class LoginActivity extends AppCompatActivity {
                                 } else {
                                     Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
                                     Intent intentToHome = new Intent(LoginActivity.this, MainActivity.class);
+                                    intentToHome.putExtra("userID", mFirebaseAuth.getCurrentUser().getUid());
                                     startActivity(intentToHome);
                                 }
                             }

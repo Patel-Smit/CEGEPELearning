@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public static String eemail;
     public static String ppassword;
     public static String userId;
+    UserHelperClass user;
 
     TextView headerName, menuTitle;
 
@@ -68,6 +69,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mDatabaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                user = new UserHelperClass(dataSnapshot.child(userid).child("name").getValue().toString(),
+                        dataSnapshot.child(userid).child("dob").getValue().toString(),
+                        dataSnapshot.child(userid).child("city").getValue().toString(),
+                        dataSnapshot.child(userid).child("email").getValue().toString(),
+                        dataSnapshot.child(userid).child("password").getValue().toString());
                 if (userid == null) {
                     System.out.println("User UUID not valid");
                 } else {
@@ -78,7 +84,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     ppassword = dataSnapshot.child(userid).child("password").getValue().toString();
 
                     headerName = findViewById(R.id.header_name);
-                    headerName.setText(nname);
+                    if (nname != null) {
+                        System.out.println(user.getName());
+
+                    } else {
+
+                    }
                 }
             }
 
@@ -90,6 +101,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void triggerNavBar(View v) {
+        headerName.setText(user.getName());
         drawerLayout.openDrawer(Gravity.LEFT);
     }
 

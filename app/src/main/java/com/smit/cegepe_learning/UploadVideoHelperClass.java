@@ -8,11 +8,12 @@ public class UploadVideoHelperClass {
     String user;
     String approvalStatus;
     String id;
+    String thumbnailLink;
 
     UploadVideoHelperClass() {
     }
 
-    public UploadVideoHelperClass(String title, String description, String category, String link, String user, String approvalStatus, String id) {
+    public UploadVideoHelperClass(String title, String description, String category, String link, String user, String approvalStatus, String id, String thumbnailLink) {
         this.title = title;
         this.description = description;
         this.category = category;
@@ -72,6 +73,14 @@ public class UploadVideoHelperClass {
 
     public String getId() {
         return id;
+    }
+
+    public String getThumbnailLink() {
+        return thumbnailLink;
+    }
+
+    public void setThumbnailLink(String thumbnailLink) {
+        this.thumbnailLink = thumbnailLink;
     }
 
     public void setId(String id) {

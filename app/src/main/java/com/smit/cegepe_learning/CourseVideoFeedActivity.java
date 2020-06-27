@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.FirebaseDatabase;
@@ -28,12 +29,11 @@ public class CourseVideoFeedActivity extends AppCompatActivity {
 
         FirebaseRecyclerOptions<PostVideoFeed> options =
                 new FirebaseRecyclerOptions.Builder<PostVideoFeed>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("videos").child(categoryFetchName), PostVideoFeed.class)
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("videos").child(categoryFetchName).orderByChild("approvalStatus").equalTo("1"), PostVideoFeed.class)
                         .build();
 
         postVideoFeedAdapter = new PostVideoFeedAdapter(options);
         rvFeed.setAdapter(postVideoFeedAdapter);
-
         System.out.println(categoryFetchName);
     }
 

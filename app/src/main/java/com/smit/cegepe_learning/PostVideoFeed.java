@@ -7,6 +7,8 @@ public class PostVideoFeed {
     String link;
     String title;
     String user;
+    String approvalStatus;
+    String thumbnailLink;
 
     public PostVideoFeed() {
     }
@@ -20,6 +22,8 @@ public class PostVideoFeed {
                 ", link='" + link + '\'' +
                 ", title='" + title + '\'' +
                 ", user='" + user + '\'' +
+                ", approvalStatus='" + approvalStatus + '\'' +
+                ", thumbnailLink='" + thumbnailLink + '\'' +
                 '}';
     }
 
@@ -69,5 +73,21 @@ public class PostVideoFeed {
 
     public void setUser(String user) {
         this.user = user;
+    }
+
+    public String getApprovalStatus() {
+        return approvalStatus;
+    }
+
+    public void setApprovalStatus(String approvalStatus) {
+        this.approvalStatus = approvalStatus;
+    }
+
+    public String getThumbnailLink() {
+        return thumbnailLink;
+    }
+
+    public void setThumbnailLink(String thumbnailLink) {
+        this.thumbnailLink = thumbnailLink;
     }
 }

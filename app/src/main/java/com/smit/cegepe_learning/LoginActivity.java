@@ -83,7 +83,7 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (!task.isSuccessful()) {
-                                Toast.makeText(LoginActivity.this, "Error while Login", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginActivity.this, "Error while Login!", Toast.LENGTH_SHORT).show();
                             } else {
                                 if (!mFirebaseAuth.getCurrentUser().isEmailVerified()) {
                                     Toast.makeText(LoginActivity.this, "Please verify your email before signing in", Toast.LENGTH_SHORT).show();

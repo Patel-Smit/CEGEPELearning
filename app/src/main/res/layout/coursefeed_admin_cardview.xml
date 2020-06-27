@@ -87,22 +87,19 @@
                 android:id="@+id/ll_appovalbuttons"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:visibility="gone">
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/btn_approved"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Y"
-                    android:visibility="invisible"></Button>
+                    android:text="Y"></Button>
 
                 <Button
                     android:id="@+id/btn_notApproved"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="N"
-                    android:visibility="invisible"></Button>
+                    android:text="N"></Button>
             </LinearLayout>
         </LinearLayout>
 

@@ -4,7 +4,10 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,6 +19,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 public class PostVideoFeedAdapter extends FirebaseRecyclerAdapter<PostVideoFeed, PostVideoFeedAdapter.PostVideoFeedViewHolder> {
 
@@ -28,7 +32,7 @@ public class PostVideoFeedAdapter extends FirebaseRecyclerAdapter<PostVideoFeed,
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull final PostVideoFeedViewHolder holder, int position, @NonNull PostVideoFeed postVideoFeed) {
+    protected void onBindViewHolder(@NonNull final PostVideoFeedViewHolder holder, int position, @NonNull final PostVideoFeed postVideoFeed) {
         databaseReference = FirebaseDatabase.getInstance().getReference().child("users").child(postVideoFeed.getUser());
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -43,11 +47,14 @@ public class PostVideoFeedAdapter extends FirebaseRecyclerAdapter<PostVideoFeed,
 
             }
         });
+
         holder.id.setText(postVideoFeed.getId());
         holder.title.setText(postVideoFeed.getTitle());
         holder.description.setText(postVideoFeed.getDescription());
         holder.category.setText(postVideoFeed.getCategory());
         holder.link.setText(postVideoFeed.getLink());
+        holder.approvalStatus.setText(postVideoFeed.getApprovalStatus());
+        Picasso.get().load(postVideoFeed.getThumbnailLink()).into(holder.img);
         //  holder.user.setText(user1.getName());
 
         final String couLink = postVideoFeed.getLink();
@@ -63,18 +70,39 @@ public class PostVideoFeedAdapter extends FirebaseRecyclerAdapter<PostVideoFeed,
                 view.getContext().startActivity(myIntent);
             }
         });
+        holder.approve.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference().child("videos").child("Android").child(postVideoFeed.getId());
+                rootRef.child("approvalStatus").setValue("1");
+            }
+        });
+        holder.notapprove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference().child("videos").child("Android").child(postVideoFeed.getId());
+                rootRef.child("approvalStatus").setValue("-1");
+            }
+        });
     }
 
     @NonNull
     @Override
     public PostVideoFeedViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.coursefeed_cardview, parent, false);
-        return new PostVideoFeedViewHolder(view);
+        if (MainActivity.uusertype.equals("admin")) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.coursefeed_admin_cardview, parent, false);
+            return new PostVideoFeedViewHolder(view);
+        } else {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.coursefeed_cardview, parent, false);
+            return new PostVideoFeedViewHolder(view);
+        }
     }
 
     class PostVideoFeedViewHolder extends RecyclerView.ViewHolder {
 
-        TextView id, title, description, category, link, user;
+        TextView id, title, description, category, link, user, approvalStatus;
+        Button approve, notapprove;
+        ImageView img;
         View v;
 
         public PostVideoFeedViewHolder(@NonNull View itemView) {
@@ -86,6 +114,10 @@ public class PostVideoFeedAdapter extends FirebaseRecyclerAdapter<PostVideoFeed,
             category = itemView.findViewById(R.id.feed_category);
             link = itemView.findViewById(R.id.feed_link);
             user = itemView.findViewById(R.id.feed_user);
+            approvalStatus = itemView.findViewById(R.id.feed_status);
+            approve = itemView.findViewById(R.id.btn_approved);
+            notapprove = itemView.findViewById(R.id.btn_notApproved);
+            img = itemView.findViewById(R.id.iv_cardThumbnail);
             v = itemView;
         }
     }

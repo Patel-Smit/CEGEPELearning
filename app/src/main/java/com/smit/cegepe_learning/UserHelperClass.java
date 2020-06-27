@@ -6,16 +6,18 @@ public class UserHelperClass {
     String city;
     String email;
     String password;
+    String usertype;
 
     UserHelperClass() {
     }
 
-    public UserHelperClass(String name, String dob, String city, String email, String password) {
+    public UserHelperClass(String name, String dob, String city, String email, String password, String usertype) {
         this.name = name;
         this.dob = dob;
         this.city = city;
         this.email = email;
         this.password = password;
+        this.usertype = usertype;
     }
 
     public String getName() {
@@ -56,5 +58,13 @@ public class UserHelperClass {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getUsertype() {
+        return usertype;
+    }
+
+    public void setUsertype(String usertype) {
+        this.usertype = usertype;
     }
 }

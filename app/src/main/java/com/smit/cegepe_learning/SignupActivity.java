@@ -51,6 +51,7 @@ public class SignupActivity extends AppCompatActivity {
                 final String cityy = signupCity.getText().toString();
                 final String emailId = signupEmail.getText().toString();
                 final String passwd = signupPassword.getText().toString();
+                final String userType = "user";
 
                 if (emailId.isEmpty()) {
                     signupEmail.setError("Please enter email address");
@@ -80,7 +81,7 @@ public class SignupActivity extends AppCompatActivity {
                                 });
 
                                 String userid = mFirebaseUser.getUid();
-                                UserHelperClass helperClass = new UserHelperClass(namee, birthdayy, cityy, emailId, passwd);
+                                UserHelperClass helperClass = new UserHelperClass(namee, birthdayy, cityy, emailId, passwd, userType);
                                 reference.child(userid).setValue(helperClass);
                                 FirebaseAuth.getInstance().signOut();
                                 startActivity(new Intent(SignupActivity.this, LoginActivity.class));

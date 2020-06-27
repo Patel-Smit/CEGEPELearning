@@ -7,11 +7,14 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
@@ -35,9 +38,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public static String eemail;
     public static String ppassword;
     public static String userId;
+    public static String uusertype;
+    //public Menu adminmenu;
+
+
     UserHelperClass user;
 
     TextView headerName, menuTitle;
+    LinearLayout llayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,9 +57,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        llayout = findViewById(R.id.ll_appovalbuttons);
         drawerLayout = findViewById(R.id.drawerLayout);
         navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        //adminmenu = findViewById(R.id.adminMenu);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -73,7 +84,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         dataSnapshot.child(userid).child("dob").getValue().toString(),
                         dataSnapshot.child(userid).child("city").getValue().toString(),
                         dataSnapshot.child(userid).child("email").getValue().toString(),
-                        dataSnapshot.child(userid).child("password").getValue().toString());
+                        dataSnapshot.child(userid).child("password").getValue().toString(),
+                        dataSnapshot.child(userid).child("usertype").getValue().toString());
                 if (userid == null) {
                     System.out.println("User UUID not valid");
                 } else {
@@ -82,13 +94,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     ccity = dataSnapshot.child(userid).child("city").getValue().toString();
                     eemail = dataSnapshot.child(userid).child("email").getValue().toString();
                     ppassword = dataSnapshot.child(userid).child("password").getValue().toString();
+                    uusertype = dataSnapshot.child(userid).child("usertype").getValue().toString();
 
                     headerName = findViewById(R.id.header_name);
                     if (nname != null) {
                         System.out.println(user.getName());
-
                     } else {
 
+                    }
+                    Menu navMenu = navigationView.getMenu();
+
+                    if (uusertype.equals("admin")) {
+                        navMenu.findItem(R.id.adminMenu).setVisible(true);
+                    } else {
+                        navMenu.findItem(R.id.adminMenu).setVisible(false);
                     }
                 }
             }
@@ -117,6 +136,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 menuTitle.setText("Upload Course");
                 getSupportFragmentManager().beginTransaction().replace(R.id.back, new fragment_uploadcourse()).commit();
                 break;
+            case R.id.MyVideos:
+                menuTitle.setText("My Videos");
+                getSupportFragmentManager().beginTransaction().replace(R.id.back, new fragment_myvideos()).commit();
+                break;
             case R.id.Profile:
                 menuTitle.setText("Profile");
                 getSupportFragmentManager().beginTransaction().replace(R.id.back, new fragment_profile()).commit();
@@ -128,6 +151,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.About:
                 menuTitle.setText("About");
                 getSupportFragmentManager().beginTransaction().replace(R.id.back, new fragment_about()).commit();
+                break;
+            case R.id.ApprovalRequests:
+                menuTitle.setText("Approval Requests");
+                getSupportFragmentManager().beginTransaction().replace(R.id.back, new fragment_tutorialapprovals()).commit();
                 break;
             case R.id.SignOut:
                 FirebaseAuth.getInstance().signOut();

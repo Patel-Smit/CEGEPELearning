@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     UserHelperClass user;
 
-    TextView headerName, menuTitle;
+    TextView headerName, headerUserType, menuTitle;
     LinearLayout llayout;
 
     @Override
@@ -97,11 +97,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     uusertype = dataSnapshot.child(userid).child("usertype").getValue().toString();
 
                     headerName = findViewById(R.id.header_name);
-                    if (nname != null) {
-                        System.out.println(user.getName());
-                    } else {
+                    headerUserType = findViewById(R.id.header_userType);
 
-                    }
                     Menu navMenu = navigationView.getMenu();
 
                     if (uusertype.equals("admin")) {
@@ -121,6 +118,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     public void triggerNavBar(View v) {
         headerName.setText(user.getName());
+        headerUserType.setText(user.getUsertype().toUpperCase());
         drawerLayout.openDrawer(Gravity.LEFT);
     }
 
@@ -151,6 +149,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.About:
                 menuTitle.setText("About");
                 getSupportFragmentManager().beginTransaction().replace(R.id.back, new fragment_about()).commit();
+                break;
+            case R.id.Chat:
+                menuTitle.setText("Chat");
+                getSupportFragmentManager().beginTransaction().replace(R.id.back, new fragment_chat()).commit();
                 break;
             case R.id.ApprovalRequests:
                 menuTitle.setText("Approval Requests");

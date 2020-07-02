@@ -21,6 +21,7 @@ public class UploadVideoHelperClass {
         this.user = user;
         this.approvalStatus = approvalStatus;
         this.id = id;
+        this.thumbnailLink = thumbnailLink;
     }
 
     public String getTitle() {
@@ -75,15 +76,15 @@ public class UploadVideoHelperClass {
         return id;
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getThumbnailLink() {
         return thumbnailLink;
     }
 
     public void setThumbnailLink(String thumbnailLink) {
         this.thumbnailLink = thumbnailLink;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 }

@@ -1,7 +1,7 @@
 package com.smit.cegepe_learning;
 
-public class UserHelperClass {
-
+public class UserIdClass {
+    String id;
     String name;
     String dob;
     String city;
@@ -9,10 +9,11 @@ public class UserHelperClass {
     String password;
     String usertype;
 
-    UserHelperClass() {
+    UserIdClass() {
     }
 
-    public UserHelperClass(String name, String dob, String city, String email, String password, String usertype) {
+    public UserIdClass(String id, String name, String dob, String city, String email, String password, String usertype) {
+        this.id = id;
         this.name = name;
         this.dob = dob;
         this.city = city;
@@ -27,6 +28,14 @@ public class UserHelperClass {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getDob() {
@@ -70,3 +79,4 @@ public class UserHelperClass {
         this.usertype = usertype;
     }
 }
+

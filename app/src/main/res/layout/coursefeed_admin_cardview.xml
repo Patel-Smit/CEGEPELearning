@@ -38,7 +38,7 @@
         <ImageView
             android:id="@+id/iv_cardThumbnail"
             android:layout_width="180dp"
-            android:layout_height="100dp"
+            android:layout_height="130dp"
             android:layout_marginTop="10dp"
             android:src="@drawable/thumbtemp"></ImageView>
 
@@ -93,13 +93,21 @@
                     android:id="@+id/btn_approved"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Y"></Button>
+                    android:text="\u2713"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    android:background="#00D01B"
+                    android:layout_marginLeft="10dp"></Button>
 
                 <Button
                     android:id="@+id/btn_notApproved"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="N"></Button>
+                    android:text="X"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    android:background="#F74848"
+                    android:layout_marginLeft="10dp"></Button>
             </LinearLayout>
         </LinearLayout>
 

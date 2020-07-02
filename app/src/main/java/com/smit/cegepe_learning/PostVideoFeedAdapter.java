@@ -2,6 +2,7 @@ package com.smit.cegepe_learning;
 
 import android.content.Intent;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -18,14 +19,14 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 public class PostVideoFeedAdapter extends FirebaseRecyclerAdapter<PostVideoFeed, PostVideoFeedAdapter.PostVideoFeedViewHolder> {
 
-    DatabaseReference databaseReference;
+    DatabaseReference databaseReference, databaseReference1;
     String userName;
-    UserHelperClass user1;
 
     public PostVideoFeedAdapter(@NonNull FirebaseRecyclerOptions<PostVideoFeed> options) {
         super(options);
@@ -60,28 +61,54 @@ public class PostVideoFeedAdapter extends FirebaseRecyclerAdapter<PostVideoFeed,
         final String couLink = postVideoFeed.getLink();
         final String couTitle = postVideoFeed.getTitle();
         final String couDescription = postVideoFeed.getDescription();
+        final String couCreator = postVideoFeed.getUser();
         holder.v.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(), VideoPlayerActivity.class);
+            public void onClick(final View view) {
+                final Intent myIntent = new Intent(view.getContext(), VideoPlayerActivity.class);
                 myIntent.putExtra("linkValue", couLink);
                 myIntent.putExtra("titleValue", couTitle);
                 myIntent.putExtra("descriptionValue", couDescription);
-                view.getContext().startActivity(myIntent);
+
+                databaseReference1 = FirebaseDatabase.getInstance().getReference().child("users").child(postVideoFeed.getUser());
+
+                databaseReference1.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        userName = dataSnapshot.child("name").getValue().toString();
+                        Intent myIntent = new Intent(view.getContext(), VideoPlayerActivity.class);
+                        myIntent.putExtra("linkValue", couLink);
+                        myIntent.putExtra("titleValue", couTitle);
+                        myIntent.putExtra("descriptionValue", couDescription);
+                        System.out.println(userName + " ehehehhehehe");
+                        myIntent.putExtra("creatorValue", userName);
+                        view.getContext().startActivity(myIntent);
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+
             }
         });
+
         holder.approve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference().child("videos").child("Android").child(postVideoFeed.getId());
-                rootRef.child("approvalStatus").setValue("1");
+                DatabaseReference parentref = FirebaseDatabase.getInstance().getReference().child("videos").child(postVideoFeed.getCategory()).child(postVideoFeed.getId());
+                parentref.child("approvalStatus").setValue("1");
             }
         });
         holder.notapprove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference().child("videos").child("Android").child(postVideoFeed.getId());
-                rootRef.child("approvalStatus").setValue("-1");
+                DatabaseReference parentref = FirebaseDatabase.getInstance().getReference().child("videos").child(postVideoFeed.getCategory()).child(postVideoFeed.getId());
+                parentref.child("approvalStatus").setValue("-1");
             }
         });
     }

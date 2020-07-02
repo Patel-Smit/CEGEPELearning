@@ -121,7 +121,7 @@ public class fragment_uploadcourse extends Fragment {
                 } else {
                     spinnerDataList.clear();
                     adapter.notifyDataSetChanged();
-                    UploadVideoHelperClass uploadVideoHelperClass = new UploadVideoHelperClass(vTitle, vDescription, vCategory, vLink, vUser, vApproved, vId, "");
+                    UploadVideoHelperClass uploadVideoHelperClass = new UploadVideoHelperClass(vTitle, vDescription, vCategory, vLink, vUser, vApproved, vId, "https://firebasestorage.googleapis.com/v0/b/cegep-e-learning.appspot.com/o/CourseLogos%2FPresentationWallpaper.jpg?alt=media&token=ff12c899-2867-4b39-9403-d27e9dd9457d");
                     reference.child(vId).setValue(uploadVideoHelperClass);
                     Toast.makeText(getActivity().getApplication(), "Upload Successful, Video is under Approval", Toast.LENGTH_SHORT).show();
                     mDatabaseRef = FirebaseDatabase.getInstance().getReference("videos").child(categoryName).child(vId);
@@ -130,6 +130,7 @@ public class fragment_uploadcourse extends Fragment {
                     videoTitle.setText(null);
                     videoDescription.setText(null);
                     videoLink.setText(null);
+                    thumbnailView.setImageDrawable(null);
                 }
             }
 

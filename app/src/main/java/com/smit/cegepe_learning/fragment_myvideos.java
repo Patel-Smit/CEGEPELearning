@@ -27,8 +27,8 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class fragment_myvideos extends Fragment {
-    private RecyclerView rvMyVideos, rvCat1, rvCat2;
-    private PostVideoFeedAdapter postVideoFeedAdapter, postVideoFeedAdapter1, postVideoFeedAdapter2;
+    private RecyclerView rvMyVideos, rvCat1, rvCat2, rvCat3, rvCat4;
+    private PostVideoFeedAdapter postVideoFeedAdapter, postVideoFeedAdapter1, postVideoFeedAdapter2, postVideoFeedAdapter3, postVideoFeedAdapter4;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_myvideos, container, false);
@@ -44,9 +44,15 @@ public class fragment_myvideos extends Fragment {
         rvCat2 = v.findViewById(R.id.myvideos_rv_cat2);
         rvCat2.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        rvCat3 = v.findViewById(R.id.myvideos_rv_cat3);
+        rvCat3.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        rvCat4 = v.findViewById(R.id.myvideos_rv_cat4);
+        rvCat4.setLayoutManager(new LinearLayoutManager(getContext()));
+
         FirebaseRecyclerOptions<PostVideoFeed> options =
                 new FirebaseRecyclerOptions.Builder<PostVideoFeed>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("videos").child("Android").orderByChild("user").equalTo(MainActivity.userId), PostVideoFeed.class)
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("videos").child("App Guide").orderByChild("user").equalTo(MainActivity.userId), PostVideoFeed.class)
                         .build();
 
         postVideoFeedAdapter = new PostVideoFeedAdapter(options);
@@ -54,7 +60,7 @@ public class fragment_myvideos extends Fragment {
 
         FirebaseRecyclerOptions<PostVideoFeed> options1 =
                 new FirebaseRecyclerOptions.Builder<PostVideoFeed>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("videos").child("Project Management").orderByChild("user").equalTo(MainActivity.userId), PostVideoFeed.class)
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("videos").child("Android").orderByChild("user").equalTo(MainActivity.userId), PostVideoFeed.class)
                         .build();
 
         postVideoFeedAdapter1 = new PostVideoFeedAdapter(options1);
@@ -67,6 +73,22 @@ public class fragment_myvideos extends Fragment {
 
         postVideoFeedAdapter2 = new PostVideoFeedAdapter(options2);
         rvCat2.setAdapter(postVideoFeedAdapter2);
+
+        FirebaseRecyclerOptions<PostVideoFeed> options3 =
+                new FirebaseRecyclerOptions.Builder<PostVideoFeed>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("videos").child("JAVA").orderByChild("user").equalTo(MainActivity.userId), PostVideoFeed.class)
+                        .build();
+
+        postVideoFeedAdapter3 = new PostVideoFeedAdapter(options3);
+        rvCat3.setAdapter(postVideoFeedAdapter3);
+
+        FirebaseRecyclerOptions<PostVideoFeed> options4 =
+                new FirebaseRecyclerOptions.Builder<PostVideoFeed>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("videos").child("JavaScript").orderByChild("user").equalTo(MainActivity.userId), PostVideoFeed.class)
+                        .build();
+
+        postVideoFeedAdapter4 = new PostVideoFeedAdapter(options4);
+        rvCat4.setAdapter(postVideoFeedAdapter4);
         return v;
     }
 
@@ -76,6 +98,8 @@ public class fragment_myvideos extends Fragment {
         postVideoFeedAdapter.startListening();
         postVideoFeedAdapter1.startListening();
         postVideoFeedAdapter2.startListening();
+        postVideoFeedAdapter3.startListening();
+        postVideoFeedAdapter4.startListening();
     }
 
     @Override
@@ -84,5 +108,7 @@ public class fragment_myvideos extends Fragment {
         postVideoFeedAdapter.stopListening();
         postVideoFeedAdapter1.startListening();
         postVideoFeedAdapter2.startListening();
+        postVideoFeedAdapter3.startListening();
+        postVideoFeedAdapter4.startListening();
     }
 }

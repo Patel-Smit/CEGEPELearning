@@ -12,20 +12,21 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:background="@drawable/background"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:gravity="center">
 
 
         <ImageView
+            android:id="@+id/iv_categoryLogo"
             android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_height="130dp"
             android:src="@drawable/mainlogo"></ImageView>
 
         <TextView
             android:id="@+id/courses_categotyName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:text="CATEGORY NAME"
+            android:text="CATEGORY"
             android:textSize="30sp"
             android:textColor="#000000"
             android:textStyle="bold"></TextView>

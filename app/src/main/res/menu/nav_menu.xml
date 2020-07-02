@@ -25,6 +25,10 @@
             android:id="@+id/About"
             android:icon="@drawable/about"
             android:title="About" />
+        <item
+            android:id="@+id/Chat"
+            android:icon="@drawable/coursecategories"
+            android:title="Chat" />
     </group>
 
     <item

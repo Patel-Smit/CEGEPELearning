@@ -19,8 +19,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class fragment_tutorialapprovals extends Fragment {
-    private RecyclerView rvTutorialApprovals;
-    private PostVideoFeedAdapter postVideoFeedAdapter;
+    private RecyclerView rvTutorialApprovals, rvCat1, rvCat2, rvCat3, rvCat4;
+    private PostVideoFeedAdapter postVideoFeedAdapter, postVideoFeedAdapter1, postVideoFeedAdapter2, postVideoFeedAdapter3, postVideoFeedAdapter4;
     Button buttonApproved, buttonNotApproved;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -29,16 +29,61 @@ public class fragment_tutorialapprovals extends Fragment {
         rvTutorialApprovals = v.findViewById(R.id.rv_tutorialApprovals);
         rvTutorialApprovals.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        rvCat1 = v.findViewById(R.id.tutapprovals_rv_cat1);
+        rvCat1.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        rvCat2 = v.findViewById(R.id.tutapprovals_rv_cat2);
+        rvCat2.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        rvCat3 = v.findViewById(R.id.tutapprovals_rv_cat3);
+        rvCat3.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        rvCat4 = v.findViewById(R.id.tutapprovals_rv_cat4);
+        rvCat4.setLayoutManager(new LinearLayoutManager(getContext()));
+
+
         buttonApproved = v.findViewById(R.id.btn_approved);
         buttonNotApproved = v.findViewById(R.id.btn_notApproved);
 
         FirebaseRecyclerOptions<PostVideoFeed> options =
                 new FirebaseRecyclerOptions.Builder<PostVideoFeed>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("videos").child("Android").orderByChild("approvalStatus").equalTo("0"), PostVideoFeed.class)
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("videos").child("App Guide").orderByChild("approvalStatus").equalTo("0"), PostVideoFeed.class)
                         .build();
 
         postVideoFeedAdapter = new PostVideoFeedAdapter(options);
         rvTutorialApprovals.setAdapter(postVideoFeedAdapter);
+
+        FirebaseRecyclerOptions<PostVideoFeed> options1 =
+                new FirebaseRecyclerOptions.Builder<PostVideoFeed>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("videos").child("Android").orderByChild("approvalStatus").equalTo("0"), PostVideoFeed.class)
+                        .build();
+
+        postVideoFeedAdapter1 = new PostVideoFeedAdapter(options1);
+        rvCat1.setAdapter(postVideoFeedAdapter1);
+
+        FirebaseRecyclerOptions<PostVideoFeed> options2 =
+                new FirebaseRecyclerOptions.Builder<PostVideoFeed>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("videos").child("Web Designing").orderByChild("approvalStatus").equalTo("0"), PostVideoFeed.class)
+                        .build();
+
+        postVideoFeedAdapter2 = new PostVideoFeedAdapter(options2);
+        rvCat2.setAdapter(postVideoFeedAdapter2);
+
+        FirebaseRecyclerOptions<PostVideoFeed> options3 =
+                new FirebaseRecyclerOptions.Builder<PostVideoFeed>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("videos").child("JAVA").orderByChild("approvalStatus").equalTo("0"), PostVideoFeed.class)
+                        .build();
+
+        postVideoFeedAdapter3 = new PostVideoFeedAdapter(options3);
+        rvCat3.setAdapter(postVideoFeedAdapter3);
+
+        FirebaseRecyclerOptions<PostVideoFeed> options4 =
+                new FirebaseRecyclerOptions.Builder<PostVideoFeed>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("videos").child("JavaScript").orderByChild("approvalStatus").equalTo("0"), PostVideoFeed.class)
+                        .build();
+
+        postVideoFeedAdapter4 = new PostVideoFeedAdapter(options4);
+        rvCat4.setAdapter(postVideoFeedAdapter4);
 
         return v;
     }
@@ -52,11 +97,19 @@ public class fragment_tutorialapprovals extends Fragment {
     public void onStart() {
         super.onStart();
         postVideoFeedAdapter.startListening();
+        postVideoFeedAdapter1.startListening();
+        postVideoFeedAdapter2.startListening();
+        postVideoFeedAdapter3.startListening();
+        postVideoFeedAdapter4.startListening();
     }
 
     @Override
     public void onStop() {
         super.onStop();
         postVideoFeedAdapter.stopListening();
+        postVideoFeedAdapter1.startListening();
+        postVideoFeedAdapter2.startListening();
+        postVideoFeedAdapter3.startListening();
+        postVideoFeedAdapter4.startListening();
     }
 }

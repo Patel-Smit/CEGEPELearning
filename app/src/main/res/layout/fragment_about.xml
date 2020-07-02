@@ -4,46 +4,57 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <View
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="10dp"
-        android:background="@android:color/darker_gray" />
+        android:layout_height="match_parent">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:src="@drawable/mainlogo" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:text="CEGEP E-Learning is an app developed by 4DEVLP. It allows students online accessibility to the courses offered by CEGEP, and offers instant access to many tutorial videos as well as students can upload their tutorials too. It also provides a live chat functionality, where students can post their doubts or can discuss about a topic."
-        android:textColor="#000000"
-        android:textSize="20dp"></TextView>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="@android:color/darker_gray" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="10dp"
-        android:background="@android:color/darker_gray" />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:src="@drawable/mainlogo" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:text="Copyright \u00a9 2020, 4Devlp"
-        android:textSize="20dp"></TextView>
+            <TextView
+                android:id="@+id/about_tv_intro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text="CEGEP E-Learning is an app developed by 4DEVLP. It allows students online accessibility to the courses offered by CEGEP, and offers instant access to many tutorial videos as well as students can upload their tutorials too. It also provides a live chat functionality, where students can post their doubts or can discuss about a topic."
+                android:textColor="#000000"
+                android:textSize="20dp"></TextView>
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:src="@drawable/team_logo" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="@android:color/darker_gray" />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text="Copyright \u00a9 2020, 4Devlp"
+                android:textSize="20dp"></TextView>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:src="@drawable/team_logo" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

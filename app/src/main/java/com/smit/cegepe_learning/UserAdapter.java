@@ -48,14 +48,25 @@ public class UserAdapter extends RecyclerView.Adapter {
         //System.out.println(user.getName());
         TextView tvUser = holder.itemView.findViewById(R.id.chat_tv_user);
         TextView tvUsertype = holder.itemView.findViewById(R.id.chat_tv_usertype);
+        ImageView imgFp = holder.itemView.findViewById(R.id.chat_iv_userImage);
         tvUser.setText(user.getName());
-        tvUsertype.setText(user.getUsertype().toUpperCase());
-        if (user.getUsertype().toLowerCase().equals("admin")) {
-            holder.itemView.findViewById(R.id.chat_iv_userImage).setBackgroundResource(R.drawable.icon_admin);
-        } else if (user.getUsertype().toLowerCase().equals("teacher")) {
-            holder.itemView.findViewById(R.id.chat_iv_userImage).setBackgroundResource(R.drawable.icon_teacher);
+        if (user.getUsertype().toLowerCase().equals("user")) {
+            tvUsertype.setText("");
         } else {
-            holder.itemView.findViewById(R.id.chat_iv_userImage).setBackgroundResource(R.drawable.icon_user);
+            tvUsertype.setText("(" + user.getUsertype().toUpperCase() + ")");
+        }
+        if (user.getUsertype().toLowerCase().equals("admin")) {
+            //holder.itemView.findViewById(R.id.chat_iv_userImage).setBackgroundResource(R.drawable.icon_admin);
+            imgFp.setImageResource(R.drawable.icon_admin);
+            imgFp.setBackgroundResource(R.drawable.rounded_backgroundadmin);
+        } else if (user.getUsertype().toLowerCase().equals("teacher")) {
+            //holder.itemView.findViewById(R.id.chat_iv_userImage).setBackgroundResource(R.drawable.icon_teacher);
+            imgFp.setImageResource(R.drawable.icon_teacher);
+            imgFp.setBackgroundResource(R.drawable.rounded_backgroundteacher);
+        } else {
+            //holder.itemView.findViewById(R.id.chat_iv_userImage).setBackgroundResource(R.drawable.icon_user);
+            imgFp.setImageResource(R.drawable.icon_user);
+            imgFp.setBackgroundResource(R.drawable.rounded_background);
         }
         TextView lastmessage1 = holder.itemView.findViewById(R.id.chat_tv_lastmessage);
         if (isChat) {

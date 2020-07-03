@@ -20,7 +20,7 @@ public class PostVideoAdapter extends FirebaseRecyclerAdapter<PostVideos, PostVi
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull PostVideoViewHolder holder, int position, @NonNull PostVideos postVideos) {
+    protected void onBindViewHolder(@NonNull final PostVideoViewHolder holder, int position, @NonNull PostVideos postVideos) {
         final String couCatName = postVideos.getCategoryName();
         final String couCatLink = postVideos.getCategoryImageLink();
         holder.v.setOnClickListener(new View.OnClickListener() {
@@ -34,6 +34,20 @@ public class PostVideoAdapter extends FirebaseRecyclerAdapter<PostVideos, PostVi
             }
         });
         holder.categoryName.setText(postVideos.getCategoryName());
+        holder.categoryTeachers.setText(postVideos.getCategoryTeachers());
+        holder.categoryTeachers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                holder.categoryTeachers.setLines(1);
+            }
+        });
+        holder.categoryTeachers.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                holder.categoryTeachers.setLines(5);
+                return false;
+            }
+        });
         Picasso.get().load(postVideos.getCategoryImageLink()).into(holder.categoryImageLink);
     }
 
@@ -45,13 +59,14 @@ public class PostVideoAdapter extends FirebaseRecyclerAdapter<PostVideos, PostVi
     }
 
     class PostVideoViewHolder extends RecyclerView.ViewHolder {
-        TextView categoryName;
+        TextView categoryName, categoryTeachers;
         ImageView categoryImageLink;
         View v;
 
         public PostVideoViewHolder(@NonNull View itemView) {
             super(itemView);
             categoryName = itemView.findViewById(R.id.courses_categotyName);
+            categoryTeachers = itemView.findViewById(R.id.courses_categotyTeachers);
             categoryImageLink = itemView.findViewById(R.id.iv_categoryLogo);
             v = itemView;
         }

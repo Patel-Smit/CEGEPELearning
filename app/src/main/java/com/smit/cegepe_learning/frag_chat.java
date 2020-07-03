@@ -28,7 +28,7 @@ public class frag_chat extends Fragment {
     RecyclerView rvchat;
     UserAdapter userAdapter;
     private List<UserIdClass> muser;
-    private List<String> userlist;
+    private List<ChatList> userlist;
     FirebaseUser fuser;
     DatabaseReference reference;
 
@@ -43,34 +43,28 @@ public class frag_chat extends Fragment {
 
         fuser = FirebaseAuth.getInstance().getCurrentUser();
         userlist = new ArrayList<>();
-
-        reference = FirebaseDatabase.getInstance().getReference("chats");
+        reference = FirebaseDatabase.getInstance().getReference("chatlist").child(fuser.getUid());
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 userlist.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Chat chat = snapshot.getValue(Chat.class);
-                    if (chat.getSender().equals(fuser.getUid())) {
-                        userlist.add(chat.getReceiver());
-                    }
-                    if (chat.getReceiver().equals(fuser.getUid())) {
-                        userlist.add(chat.getSender());
-                    }
+                    ChatList chatList = snapshot.getValue(ChatList.class);
+                    userlist.add(chatList);
                 }
-                readChat();
+                chatList();
             }
+
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
-
         return v;
     }
 
-    private void readChat() {
+    private void chatList() {
         muser = new ArrayList<>();
         reference = FirebaseDatabase.getInstance().getReference("users");
         reference.addValueEventListener(new ValueEventListener() {
@@ -78,33 +72,23 @@ public class frag_chat extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 muser.clear();
                 for (DataSnapshot Snapshot : dataSnapshot.getChildren()) {
-                    UserIdClass user = new UserIdClass(Snapshot.getKey().toString(),
+                    System.out.println(Snapshot.child("name").getValue().toString());
+                    UserIdClass user = new UserIdClass(Snapshot.getKey(),
                             Snapshot.child("name").getValue().toString(),
                             Snapshot.child("dob").getValue().toString(),
                             Snapshot.child("city").getValue().toString(),
                             Snapshot.child("email").getValue().toString(),
                             Snapshot.child("password").getValue().toString(),
                             Snapshot.child("usertype").getValue().toString());
-                    for (String id : userlist) {
-                        if (user.getId().equals(id)) {
-                            if (muser.size() != 0) {
-                                for (UserIdClass user1 : muser) {
-                                    if ((!user.getId().equals(user.getId()))) {
-                                        muser.add(user);
-                                    }
-                                }
-                            } else {
-                                muser.add(user);
-                            }
+                    for (ChatList chatList : userlist) {
+                        if (user.getId().equals(chatList.getId())) {
+                            muser.add(user);
                         }
                     }
                 }
-
                 userAdapter = new UserAdapter(getContext(), muser, true);
                 rvchat.setAdapter(userAdapter);
-
             }
-
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {

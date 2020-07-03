@@ -22,6 +22,7 @@ public class MessageAdapter extends RecyclerView.Adapter {
     private List<Chat> mChat;
     FirebaseUser fuser;
 
+
     public MessageAdapter(Context mContext, List<Chat> mChat) {
         this.mChat = mChat;
         this.mContext = mContext;
@@ -45,6 +46,16 @@ public class MessageAdapter extends RecyclerView.Adapter {
         Chat chat = mChat.get(position);
         TextView chat_tv = holder.itemView.findViewById(R.id.showMessage);
         chat_tv.setText(chat.getMessage());
+        TextView txt_seen = holder.itemView.findViewById(R.id.txt_seen);
+        if (position == mChat.size() - 1) {
+            if (chat.getIsseen()) {
+                txt_seen.setText("seen");
+            } else {
+                txt_seen.setText("Delivered");
+            }
+        } else {
+            txt_seen.setVisibility(View.GONE);
+        }
 
     }
 

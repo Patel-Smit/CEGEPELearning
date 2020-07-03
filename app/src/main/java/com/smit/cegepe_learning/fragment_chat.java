@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
@@ -28,16 +29,18 @@ public class fragment_chat extends Fragment {
         tabLayout = v.findViewById(R.id.chat_tablayout);
         viewPager = v.findViewById(R.id.chat_viewPager);
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getFragmentManager());
+
         viewPagerAdapter.addFragment(new frag_chat(), "CHATS");
         viewPagerAdapter.addFragment(new frag_users(), "USERS");
 
         viewPager.setAdapter(viewPagerAdapter);
+        viewPager.getAdapter().notifyDataSetChanged();
         tabLayout.setupWithViewPager(viewPager);
 
         return v;
     }
 
-    class ViewPagerAdapter extends FragmentPagerAdapter {
+    class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
         private ArrayList<Fragment> fragments;
         private ArrayList<String> titles;

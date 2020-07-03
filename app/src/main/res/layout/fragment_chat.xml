@@ -4,15 +4,17 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/chat_sv_userSearch"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/chat_tablayout"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"></androidx.appcompat.widget.SearchView>
+        android:layout_height="wrap_content">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/chat_rv_usersList"
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/chat_viewPager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"></androidx.recyclerview.widget.RecyclerView>
+        android:layout_height="match_parent" />
+
 
 </LinearLayout>

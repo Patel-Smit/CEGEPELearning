@@ -9,7 +9,8 @@
     <androidx.appcompat.widget.SearchView
         android:id="@+id/chat_sv_userSearch"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"></androidx.appcompat.widget.SearchView>
+        android:layout_height="?attr/actionBarSize"
+        android:background="#D3D3D3"></androidx.appcompat.widget.SearchView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/chat_rv_usersList"

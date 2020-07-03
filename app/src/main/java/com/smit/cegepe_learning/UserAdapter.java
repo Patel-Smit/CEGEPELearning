@@ -50,6 +50,13 @@ public class UserAdapter extends RecyclerView.Adapter {
         TextView tvUsertype = holder.itemView.findViewById(R.id.chat_tv_usertype);
         tvUser.setText(user.getName());
         tvUsertype.setText(user.getUsertype().toUpperCase());
+        if (user.getUsertype().toLowerCase().equals("admin")) {
+            holder.itemView.findViewById(R.id.chat_iv_userImage).setBackgroundResource(R.drawable.icon_admin);
+        } else if (user.getUsertype().toLowerCase().equals("teacher")) {
+            holder.itemView.findViewById(R.id.chat_iv_userImage).setBackgroundResource(R.drawable.icon_teacher);
+        } else {
+            holder.itemView.findViewById(R.id.chat_iv_userImage).setBackgroundResource(R.drawable.icon_user);
+        }
         TextView lastmessage1 = holder.itemView.findViewById(R.id.chat_tv_lastmessage);
         if (isChat) {
             lastMessage(user.getId(), lastmessage1);
@@ -72,12 +79,14 @@ public class UserAdapter extends RecyclerView.Adapter {
 
     class chatHoldeer extends RecyclerView.ViewHolder {
         public TextView username, usertype, lastmessage;
+        public ImageView userImg;
 
         public chatHoldeer(@NonNull View itemView) {
             super(itemView);
             username = itemView.findViewById(R.id.chat_tv_user);
             usertype = itemView.findViewById(R.id.chat_tv_usertype);
             lastmessage = itemView.findViewById(R.id.chat_tv_lastmessage);
+            userImg = itemView.findViewById(R.id.chat_iv_userImage);
         }
     }
 

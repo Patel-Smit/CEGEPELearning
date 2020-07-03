@@ -51,7 +51,7 @@ public class MessageAdapter extends RecyclerView.Adapter {
             if (chat.getIsseen()) {
                 txt_seen.setText("seen");
             } else {
-                txt_seen.setText("Delivered");
+                txt_seen.setText("sent");
             }
         } else {
             txt_seen.setVisibility(View.GONE);

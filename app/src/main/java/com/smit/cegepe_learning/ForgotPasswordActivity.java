@@ -34,7 +34,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String userEmail = fpemail.getText().toString();
                 if (TextUtils.isEmpty(userEmail)) {
-                    Toast.makeText(ForgotPasswordActivity.this, "Please enter your valid email address", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ForgotPasswordActivity.this, "Please enter your email address", Toast.LENGTH_SHORT).show();
                 } else {
                     mAuth.sendPasswordResetEmail(userEmail).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
@@ -44,8 +44,16 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                                 Intent i = new Intent(ForgotPasswordActivity.this, LoginActivity.class);
                                 startActivity(i);
                             } else {
-                                String errMessage = task.getException().getMessage();
-                                Toast.makeText(ForgotPasswordActivity.this, "Error: " + errMessage, Toast.LENGTH_SHORT).show();
+                                if (task.getException().getMessage().equals("The email address is badly formatted.")) {
+                                    Toast.makeText(ForgotPasswordActivity.this, "Email Badly Formatted!", Toast.LENGTH_SHORT).show();
+                                    fpemail.requestFocus();
+                                } else if (task.getException().getMessage().equals("There is no user record corresponding to this identifier. The user may have been deleted.")) {
+                                    Toast.makeText(ForgotPasswordActivity.this, "User not exists!", Toast.LENGTH_SHORT).show();
+                                    fpemail.requestFocus();
+                                } else {
+                                    String errMessage = task.getException().getMessage();
+                                    Toast.makeText(ForgotPasswordActivity.this, "Error: " + errMessage, Toast.LENGTH_SHORT).show();
+                                }
                             }
                         }
                     });

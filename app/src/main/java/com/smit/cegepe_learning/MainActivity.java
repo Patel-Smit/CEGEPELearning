@@ -9,16 +9,20 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.ClipData;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,8 +34,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public DrawerLayout drawerLayout;
     public NavigationView navigationView;
     public Toolbar toolbar;
+    String userNametoDiaplay, userTypetoDisplay;
 
-    private DatabaseReference mDatabaseReference;
+    private DatabaseReference mDatabaseReference, reference;
+    private FirebaseUser rUser;
     public static String nname;
     public static String ddob;
     public static String ccity;
@@ -39,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public static String ppassword;
     public static String userId;
     public static String uusertype;
+    LinearLayout lltopBar;
     //public Menu adminmenu;
 
 
@@ -49,6 +56,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //setTheme(R.style.MainActivityDarkTheme);
+        SharedPreferences prefsTheme = getSharedPreferences("saveTheme", MODE_PRIVATE);
+        Boolean restoredTheme = prefsTheme.getBoolean("valueTheme", true);
+        if (restoredTheme) {
+            setTheme(R.style.MainActivityDarkTheme);
+        } else {
+            setTheme(R.style.MainActivityTheme);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         menuTitle = findViewById(R.id.menu_title);
@@ -68,13 +83,35 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        getSupportFragmentManager().beginTransaction().replace(R.id.back, new fragment_courses()).commit();
 
-        Intent intent = getIntent();
-        final String userid = intent.getStringExtra("userID");
+        Intent forRefresh = getIntent();
+        Boolean refresh = forRefresh.getBooleanExtra("refresh", false);
+        if (!refresh) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.back, new fragment_courses()).commit();
+        } else {
+            getSupportFragmentManager().beginTransaction().replace(R.id.back, new fragment_settings()).commit();
+        }
+        rUser = FirebaseAuth.getInstance().getCurrentUser();
+        final String userid = rUser.getUid();
+        //Intent intent = getIntent();
+        //final String userid = intent.getStringExtra("userID");
 
         //to access in upload video frag
-        userId = intent.getStringExtra("userID");
+        userId = rUser.getUid();
+
+        reference = FirebaseDatabase.getInstance().getReference().child("users").child(rUser.getUid());
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                userNametoDiaplay = dataSnapshot.child("name").getValue().toString();
+                userTypetoDisplay = dataSnapshot.child("usertype").getValue().toString();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("users");
         mDatabaseReference.addValueEventListener(new ValueEventListener() {
@@ -117,8 +154,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void triggerNavBar(View v) {
-        headerName.setText(user.getName());
-        headerUserType.setText(user.getUsertype().toUpperCase());
+        //headerName.setText(user.getName());
+        //headerUserType.setText(user.getUsertype().toUpperCase());
+        SharedPreferences prefsTheme = getSharedPreferences("saveTheme", MODE_PRIVATE);
+        Boolean restoredTheme = prefsTheme.getBoolean("valueTheme", true);
+        if (restoredTheme) {
+            lltopBar = findViewById(R.id.ll_navbarTop);
+            lltopBar.setBackgroundResource(R.drawable.gradient_orange);
+        }
+        headerName.setText(userNametoDiaplay);
+        headerUserType.setText(userTypetoDisplay.toUpperCase());
         drawerLayout.openDrawer(Gravity.LEFT);
     }
 
@@ -158,8 +203,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 menuTitle.setText("Approval Requests");
                 getSupportFragmentManager().beginTransaction().replace(R.id.back, new fragment_tutorialapprovals()).commit();
                 break;
+            case R.id.UnapprovedVideos:
+                menuTitle.setText("Unapproved Videos");
+                getSupportFragmentManager().beginTransaction().replace(R.id.back, new fragment_unapprovedtutorials()).commit();
+                break;
             case R.id.SignOut:
                 FirebaseAuth.getInstance().signOut();
+                Toast.makeText(MainActivity.this, "Logout Successful!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplication(), LoginActivity.class);
                 startActivity(intent);
                 break;

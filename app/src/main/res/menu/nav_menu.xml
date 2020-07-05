@@ -40,9 +40,10 @@
                 android:id="@+id/ApprovalRequests"
                 android:icon="@drawable/videoapprovals"
                 android:title="Video Approvals" />
-            <!--<item
-                android:icon="@drawable/coursecategories"
-                android:title="Course Categories" />-->
+            <item
+                android:id="@+id/UnapprovedVideos"
+                android:icon="@drawable/icon_unapproved"
+                android:title="Unapproved Videos" />
         </menu>
     </item>
 

@@ -39,6 +39,7 @@ public class SignupActivity extends AppCompatActivity {
         signupEmail = findViewById(R.id.signup_et_email);
         signupPassword = findViewById(R.id.signup_et_password);
         btnSignup = findViewById(R.id.signup_btn_signup);
+        tvSignin = findViewById(R.id.signup_tv_signin);
 
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,7 +67,20 @@ public class SignupActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (!task.isSuccessful()) {
-                                Toast.makeText(SignupActivity.this, "Signup Unsuccessful, Please try again", Toast.LENGTH_SHORT).show();
+                                System.out.println("!!!" + task.getException().toString() + "!!!!!!!!!!!!!!!!!!!");
+                                if (task.getException().getMessage().equals("The given password is invalid. [ Password should be at least 6 characters ]")) {
+                                    Toast.makeText(SignupActivity.this, "Password should be at least 6 characters", Toast.LENGTH_SHORT).show();
+                                    signupPassword.requestFocus();
+                                } else if (task.getException().getMessage().equals("The email address is badly formatted.")) {
+                                    Toast.makeText(SignupActivity.this, "Email Badly Formatted", Toast.LENGTH_SHORT).show();
+                                    signupEmail.requestFocus();
+                                } else if (task.getException().getMessage().equals("The email address is already in use by another account.")) {
+                                    Toast.makeText(SignupActivity.this, "Email already registered with another account", Toast.LENGTH_SHORT).show();
+                                    signupEmail.requestFocus();
+                                } else {
+                                    System.out.println("----------" + task.getException().getMessage() + "--------");
+                                    Toast.makeText(SignupActivity.this, "Signup Unsuccessful, Please try again", Toast.LENGTH_SHORT).show();
+                                }
                             } else {
                                 FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
                                 mFirebaseUser.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -91,6 +105,14 @@ public class SignupActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(SignupActivity.this, "Error Occurred!!!", Toast.LENGTH_SHORT);
                 }
+            }
+        });
+
+        tvSignin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intenttoLogin = new Intent(SignupActivity.this, LoginActivity.class);
+                startActivity(intenttoLogin);
             }
         });
     }

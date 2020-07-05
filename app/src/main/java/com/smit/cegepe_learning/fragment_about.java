@@ -14,16 +14,26 @@ import androidx.fragment.app.Fragment;
 
 public class fragment_about extends Fragment {
 
-    TextView tvAbout;
+    TextView tvAbout, tvTandCHeader, termsAndConditions;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_about, container, false);
 
         tvAbout = v.findViewById(R.id.about_tv_intro);
+        tvTandCHeader = v.findViewById(R.id.about_tv_TandCHeading);
+        termsAndConditions = v.findViewById(R.id.about_tv_termsAndCondi);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             tvAbout.setJustificationMode(Layout.JUSTIFICATION_MODE_INTER_WORD);
+            termsAndConditions.setJustificationMode(Layout.JUSTIFICATION_MODE_INTER_WORD);
         }
+
+        tvTandCHeader.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                termsAndConditions.setVisibility(View.VISIBLE);
+            }
+        });
 
         return v;
     }

@@ -2,6 +2,7 @@ package com.smit.cegepe_learning;
 
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -68,6 +69,12 @@ public class fragment_uploadcourse extends Fragment {
         //videoCategory = (EditText) v.findViewById(R.id.upload_videoCategory);
         videoLink = (EditText) v.findViewById(R.id.upload_videoLink);
         uploadTutorial = (Button) v.findViewById(R.id.upload_uploadTutorial);
+
+        SharedPreferences prefsTheme = getActivity().getSharedPreferences("saveTheme", getContext().MODE_PRIVATE);
+        Boolean restoredTheme = prefsTheme.getBoolean("valueTheme", true);
+        if (restoredTheme) {
+            uploadTutorial.setBackgroundResource(R.drawable.gradient_orange);
+        }
 
         spinner = (Spinner) v.findViewById(R.id.upload_sp_videoCategory);
         mStoreageRef = FirebaseStorage.getInstance().getReference("uploads");

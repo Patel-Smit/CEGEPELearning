@@ -38,4 +38,10 @@
         <item name="colorAccent">#00c6fb</item>
     </style>
 
+    <style name="MainActivityDarkThemeActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">#ff9f10</item>
+        <item name="colorPrimaryDark">#000000</item>
+        <item name="colorAccent">#00c6fb</item>
+    </style>
+
 </resources>

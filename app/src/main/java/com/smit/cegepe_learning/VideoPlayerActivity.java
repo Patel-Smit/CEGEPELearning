@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -18,8 +19,16 @@ public class VideoPlayerActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences prefsTheme = getSharedPreferences("saveTheme", MODE_PRIVATE);
+        Boolean restoredTheme = prefsTheme.getBoolean("valueTheme", true);
+        if (restoredTheme) {
+            setTheme(R.style.MainActivityDarkThemeActionBar);
+        } else {
+            setTheme(R.style.AppTheme);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_player);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         title = findViewById(R.id.videoplayer_title);
         description = findViewById(R.id.videoplayer_description);

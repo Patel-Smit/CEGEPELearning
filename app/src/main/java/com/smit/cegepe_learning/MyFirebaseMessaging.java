@@ -25,14 +25,18 @@ public class MyFirebaseMessaging extends FirebaseMessagingService {
         super.onMessageReceived(remoteMessage);
         String sented = remoteMessage.getData().get("sented");
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        SharedPreferences prefs = getSharedPreferences("save", MODE_PRIVATE);
+        Boolean restoredText = prefs.getBoolean("value", true);
         if (firebaseUser != null && sented.equals(firebaseUser.getUid())) {
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                sendOreoNotification(remoteMessage);
-            } else {
-                sendNotification(remoteMessage);
+            if (restoredText) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    sendOreoNotification(remoteMessage);
+                } else {
+                    sendNotification(remoteMessage);
+                }
             }
         }
+
     }
 
     private void sendOreoNotification(RemoteMessage remoteMessage) {

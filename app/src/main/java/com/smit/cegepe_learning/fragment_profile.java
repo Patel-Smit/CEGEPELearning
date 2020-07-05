@@ -1,6 +1,7 @@
 package com.smit.cegepe_learning;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -67,6 +68,12 @@ public class fragment_profile extends Fragment {
         editProfile = (Button) v.findViewById(R.id.profile_btn_edit);
         updateProfile = (Button) v.findViewById(R.id.profile_btn_update);
 
+        SharedPreferences prefsTheme = getActivity().getSharedPreferences("saveTheme", getContext().MODE_PRIVATE);
+        Boolean restoredTheme = prefsTheme.getBoolean("valueTheme", true);
+        if (restoredTheme) {
+            editProfile.setBackgroundResource(R.drawable.gradient_orange);
+            updateProfile.setBackgroundResource(R.drawable.gradient_orange);
+        }
         editProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

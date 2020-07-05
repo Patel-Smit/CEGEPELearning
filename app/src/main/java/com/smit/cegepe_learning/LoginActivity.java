@@ -60,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
                         startActivity(i);
                     }
                 } else {
-                    Toast.makeText(LoginActivity.this, "Please login again", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(LoginActivity.this, "Please login again", Toast.LENGTH_SHORT).show();
                 }
             }
         };
@@ -68,22 +68,49 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String emailId = loginEmail.getText().toString();
+                Animation shake = AnimationUtils.loadAnimation(getApplication(), R.anim.shake_animation);
+                final String emailId = loginEmail.getText().toString();
                 String passwd = loginPassword.getText().toString();
                 if (emailId.isEmpty()) {
                     loginEmail.setError("Please enter email address");
                     loginEmail.requestFocus();
+                    loginEmail.startAnimation(shake);
+                    emailHolder.startAnimation(shake);
                 } else if (passwd.isEmpty()) {
                     loginPassword.setError("Please enter your password");
                     loginPassword.requestFocus();
+                    loginPassword.startAnimation(shake);
+                    passwordHolder.startAnimation(shake);
                 } else if (emailId.isEmpty() && passwd.isEmpty()) {
                     Toast.makeText(LoginActivity.this, "Fields are empty", Toast.LENGTH_SHORT).show();
+                    loginEmail.startAnimation(shake);
+                    emailHolder.startAnimation(shake);
+                    loginPassword.startAnimation(shake);
+                    passwordHolder.startAnimation(shake);
                 } else if (!(emailId.isEmpty() && passwd.isEmpty())) {
                     mFirebaseAuth.signInWithEmailAndPassword(emailId, passwd).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (!task.isSuccessful()) {
-                                Toast.makeText(LoginActivity.this, "Error while Login!", Toast.LENGTH_SHORT).show();
+                                if (task.getException().getMessage().equals("The password is invalid or the user does not have a password.")) {
+                                    passwordHolder.setBoxStrokeColor(getResources().getColor(R.color.colorRed));
+                                    loginPassword.requestFocus();
+                                    Toast.makeText(LoginActivity.this, "Wrong Password", Toast.LENGTH_SHORT).show();
+                                } else if (task.getException().getMessage().equals("There is no user record corresponding to this identifier. The user may have been deleted.")) {
+                                    emailHolder.setBoxStrokeColor(getResources().getColor(R.color.colorRed));
+                                    loginEmail.requestFocus();
+                                    Toast.makeText(LoginActivity.this, "User not found", Toast.LENGTH_SHORT).show();
+                                } else if (task.getException().getMessage().equals("The email address is badly formatted.")) {
+                                    emailHolder.setBoxStrokeColor(getResources().getColor(R.color.colorRed));
+                                    loginEmail.requestFocus();
+                                    Toast.makeText(LoginActivity.this, "Email Formatted Badly", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    System.out.println("!!!" + task.getException().toString() + "!!!");
+                                    Toast.makeText(LoginActivity.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
+                                }
+                                //Toast.makeText(LoginActivity.this, "Error while Login!", Toast.LENGTH_SHORT).show();
+                                //emailHolder.setBoxStrokeColor(getResources().getColor(R.color.colorRed));
+                                //passwordHolder.setBoxStrokeColor(getResources().getColor(R.color.colorRed));
                             } else {
                                 if (!mFirebaseAuth.getCurrentUser().isEmailVerified()) {
                                     Toast.makeText(LoginActivity.this, "Please verify your email before signing in", Toast.LENGTH_SHORT).show();

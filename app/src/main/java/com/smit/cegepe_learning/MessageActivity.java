@@ -47,8 +47,16 @@ public class MessageActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences prefsTheme = getSharedPreferences("saveTheme", MODE_PRIVATE);
+        Boolean restoredTheme = prefsTheme.getBoolean("valueTheme", true);
+        if (restoredTheme) {
+            setTheme(R.style.MainActivityDarkThemeActionBar);
+        } else {
+            setTheme(R.style.AppTheme);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         messageToBeSent = findViewById(R.id.message_et_sendMessage);
         sendButton = findViewById(R.id.message_btn_send);

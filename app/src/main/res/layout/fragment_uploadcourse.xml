@@ -92,24 +92,37 @@
                     android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <ImageView
-                android:id="@+id/upload_iv_thumbnail"
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"></ImageView>
+                android:layout_margin="10dp">
 
-            <Button
-                android:id="@+id/upload_uploadThumbnail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="20dp"
-                android:onClick="onClickLogout"
-                android:text="Select Thumbnail"
-                android:textColor="#000000"
-                android:textSize="20sp"></Button>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/upload_iv_thumbnail"
+                        android:layout_width="250dp"
+                        android:layout_height="160dp"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/thumbtemp"></ImageView>
+
+                    <Button
+                        android:id="@+id/upload_uploadThumbnail"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:onClick="onClickLogout"
+                        android:text="SELECT\nIMAGE"
+                        android:textSize="20sp"></Button>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
 
             <ProgressBar
                 android:id="@+id/upload_progressbar"

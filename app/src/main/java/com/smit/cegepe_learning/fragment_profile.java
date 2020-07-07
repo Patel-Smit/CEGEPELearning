@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -28,9 +29,9 @@ public class fragment_profile extends Fragment {
 
     EditText naame, doob, ciity, emmail, paassword;
     TextInputLayout nameBox, dobBox, cityBox;
-    Button editProfile, updateProfile;
-    EditText updateName, updatedob, updatecity;
-    TextInputLayout updatenameBox, updatedobBox, updatecityBox;
+    ImageButton editProfile, updateProfile;
+    EditText updatecity;
+    TextInputLayout updatecityBox;
     private DatabaseReference mDatabaseReference;
     UserHelperClass user;
     FirebaseUser fuser;
@@ -53,20 +54,14 @@ public class fragment_profile extends Fragment {
         dobBox = (TextInputLayout) v.findViewById(R.id.profile_dobBox);
         cityBox = (TextInputLayout) v.findViewById(R.id.profile_cityBox);
 
-        //Profile Update
-        updateName = (EditText) v.findViewById(R.id.profile_et_updatename);
-        updateName.setText(MainActivity.nname);
-        updatedob = (EditText) v.findViewById(R.id.profile_et_updateDOB);
-        updatedob.setText(MainActivity.ddob);
+        //City Update
         updatecity = (EditText) v.findViewById(R.id.profile_et_updatecity);
         updatecity.setText(MainActivity.ccity);
 
-        updatenameBox = (TextInputLayout) v.findViewById(R.id.profile_updatenameBox);
-        updatedobBox = (TextInputLayout) v.findViewById(R.id.profile_updateDOBBox);
         updatecityBox = (TextInputLayout) v.findViewById(R.id.profile_updatecitybox);
 
-        editProfile = (Button) v.findViewById(R.id.profile_btn_edit);
-        updateProfile = (Button) v.findViewById(R.id.profile_btn_update);
+        editProfile = (ImageButton) v.findViewById(R.id.profile_btn_edit);
+        updateProfile = (ImageButton) v.findViewById(R.id.profile_btn_update);
 
         SharedPreferences prefsTheme = getActivity().getSharedPreferences("saveTheme", getContext().MODE_PRIVATE);
         Boolean restoredTheme = prefsTheme.getBoolean("valueTheme", true);
@@ -77,17 +72,9 @@ public class fragment_profile extends Fragment {
         editProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                naame.setVisibility(View.GONE);
-                nameBox.setVisibility(View.GONE);
-                doob.setVisibility(View.GONE);
-                dobBox.setVisibility(View.GONE);
                 ciity.setVisibility(View.GONE);
                 cityBox.setVisibility(View.GONE);
 
-                updatenameBox.setVisibility(View.VISIBLE);
-                updateName.setVisibility(View.VISIBLE);
-                updatedobBox.setVisibility(View.VISIBLE);
-                updatedob.setVisibility(View.VISIBLE);
                 updatecityBox.setVisibility(View.VISIBLE);
                 updatecity.setVisibility(View.VISIBLE);
 
@@ -100,10 +87,6 @@ public class fragment_profile extends Fragment {
             @Override
             public void onClick(View view) {
 
-                updatenameBox.setVisibility(View.GONE);
-                updateName.setVisibility(View.GONE);
-                updatedobBox.setVisibility(View.GONE);
-                updatedob.setVisibility(View.GONE);
                 updatecityBox.setVisibility(View.GONE);
                 updatecity.setVisibility(View.GONE);
 
@@ -123,14 +106,6 @@ public class fragment_profile extends Fragment {
                         if (userid == null) {
                             System.out.println("User UUID not valid");
                         } else {
-                            if (naame.getText().toString() != updateName.getText().toString()) {
-                                mDatabaseReference.child(userid).child("name").setValue(updateName.getText().toString());
-                                naame.setText(MainActivity.nname);
-                            }
-                            if (doob.getText().toString() != updatedob.getText().toString()) {
-                                mDatabaseReference.child(userid).child("dob").setValue(updatedob.getText().toString());
-                                doob.setText(MainActivity.ddob);
-                            }
                             if (ciity.getText().toString() != updatecity.getText().toString()) {
                                 mDatabaseReference.child(userid).child("city").setValue(updatecity.getText().toString());
                                 ciity.setText(MainActivity.ccity);
@@ -144,10 +119,6 @@ public class fragment_profile extends Fragment {
                     }
                 });
 
-                naame.setVisibility(View.VISIBLE);
-                nameBox.setVisibility(View.VISIBLE);
-                doob.setVisibility(View.VISIBLE);
-                dobBox.setVisibility(View.VISIBLE);
                 ciity.setVisibility(View.VISIBLE);
                 cityBox.setVisibility(View.VISIBLE);
 

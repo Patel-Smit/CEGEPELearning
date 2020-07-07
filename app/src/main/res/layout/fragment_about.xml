@@ -88,6 +88,8 @@
                         android:id="@+id/about_tv_termsAndCondi"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
                         android:text="User will be self responsible for the content he/she may post. \n \n If a user spams other users or post obscene conent or other violative activities then user's account can be terminated.\n \n Your access to and use of the Service is conditioned on your acceptance of and compliance with
 these Terms. These Terms apply to all visitors, users and others who access or use the Service. \n \n We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a
 revision is material we will try to provide at least 30 (change this) days' notice prior to any new terms
@@ -97,6 +99,58 @@ taking effect. What constitutes a material change will be determined at our sole
                         android:textColor="#000000"
                         android:visibility="gone"
                         android:background="#e6e6e6"></TextView>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/about_tv_repComm"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Report a Bug/ Comments >"
+                        android:textAlignment="center"
+                        android:textSize="20dp"
+                        android:textColor="#FFFFFF"
+                        android:background="#AA00FF"></TextView>
+
+                    <EditText
+                        android:id="@+id/about_et_repComm"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:hint="Bug Description"
+                        android:textAlignment="center"
+                        android:textColor="#000000"
+                        android:maxLines="10"
+                        android:visibility="gone"
+                        android:background="#e6e6e6"></EditText>
+
+                    <Button
+                        android:id="@+id/about_btn_submitReport"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Submit"
+                        android:background="#AA00FF"
+                        android:textColor="#ffffff"
+                        android:textSize="18sp"
+                        android:visibility="gone"></Button>
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

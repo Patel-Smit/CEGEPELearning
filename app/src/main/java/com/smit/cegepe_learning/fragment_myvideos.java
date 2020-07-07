@@ -27,8 +27,8 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class fragment_myvideos extends Fragment {
-    private RecyclerView rvMyVideos, rvCat1, rvCat2, rvCat3, rvCat4;
-    private PostVideoFeedAdapter postVideoFeedAdapter, postVideoFeedAdapter1, postVideoFeedAdapter2, postVideoFeedAdapter3, postVideoFeedAdapter4;
+    private RecyclerView rvMyVideos, rvCat1, rvCat2, rvCat3, rvCat4, rvCat5;
+    private PostVideoFeedAdapter postVideoFeedAdapter, postVideoFeedAdapter1, postVideoFeedAdapter2, postVideoFeedAdapter3, postVideoFeedAdapter4, postVideoFeedAdapter5;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_myvideos, container, false);
@@ -49,6 +49,9 @@ public class fragment_myvideos extends Fragment {
 
         rvCat4 = v.findViewById(R.id.myvideos_rv_cat4);
         rvCat4.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        rvCat5 = v.findViewById(R.id.myvideos_rv_cat5);
+        rvCat5.setLayoutManager(new LinearLayoutManager(getContext()));
 
         FirebaseRecyclerOptions<PostVideoFeed> options =
                 new FirebaseRecyclerOptions.Builder<PostVideoFeed>()
@@ -89,6 +92,15 @@ public class fragment_myvideos extends Fragment {
 
         postVideoFeedAdapter4 = new PostVideoFeedAdapter(options4);
         rvCat4.setAdapter(postVideoFeedAdapter4);
+
+        FirebaseRecyclerOptions<PostVideoFeed> options5 =
+                new FirebaseRecyclerOptions.Builder<PostVideoFeed>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("videos").child("Other").orderByChild("approvalStatus").equalTo("0"), PostVideoFeed.class)
+                        .build();
+
+        postVideoFeedAdapter5 = new PostVideoFeedAdapter(options5);
+        rvCat5.setAdapter(postVideoFeedAdapter5);
+
         return v;
     }
 
@@ -100,15 +112,17 @@ public class fragment_myvideos extends Fragment {
         postVideoFeedAdapter2.startListening();
         postVideoFeedAdapter3.startListening();
         postVideoFeedAdapter4.startListening();
+        postVideoFeedAdapter5.startListening();
     }
 
     @Override
     public void onStop() {
         super.onStop();
         postVideoFeedAdapter.stopListening();
-        postVideoFeedAdapter1.startListening();
-        postVideoFeedAdapter2.startListening();
-        postVideoFeedAdapter3.startListening();
-        postVideoFeedAdapter4.startListening();
+        postVideoFeedAdapter1.stopListening();
+        postVideoFeedAdapter2.stopListening();
+        postVideoFeedAdapter3.stopListening();
+        postVideoFeedAdapter4.stopListening();
+        postVideoFeedAdapter5.stopListening();
     }
 }

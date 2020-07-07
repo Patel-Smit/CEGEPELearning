@@ -137,7 +137,7 @@ public class fragment_uploadcourse extends Fragment {
                     videoTitle.setText(null);
                     videoDescription.setText(null);
                     videoLink.setText(null);
-                    thumbnailView.setImageDrawable(null);
+                    thumbnailView.setImageDrawable(getResources().getDrawable(R.drawable.thumbtemp));
                 }
             }
 
@@ -176,7 +176,7 @@ public class fragment_uploadcourse extends Fragment {
                                             });
                                         }
                                     }
-                                    Toast.makeText(getContext(), "Upload successful", Toast.LENGTH_LONG).show();
+                                    ////Toast.makeText(getContext(), "Upload successful", Toast.LENGTH_LONG).show();
                                     //   UploadUri upload = new UploadUri(taskSnapshot.getDownloadUrl().toString());
                                     //   String uploadId = mDatabaseRef.push().getKey();
 

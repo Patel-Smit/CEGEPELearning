@@ -16,8 +16,8 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class fragment_unapprovedtutorials extends Fragment {
-    private RecyclerView rvunapp1, rvunapp2, rvunapp3, rvunapp4, rvunapp5;
-    private PostVideoFeedAdapter postVideoFeedAdapter, postVideoFeedAdapter1, postVideoFeedAdapter2, postVideoFeedAdapter3, postVideoFeedAdapter4;
+    private RecyclerView rvunapp1, rvunapp2, rvunapp3, rvunapp4, rvunapp5, rvunapp6;
+    private PostVideoFeedAdapter postVideoFeedAdapter, postVideoFeedAdapter1, postVideoFeedAdapter2, postVideoFeedAdapter3, postVideoFeedAdapter4, postVideoFeedAdapter5;
     Button buttonApproved, buttonNotApproved;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -38,6 +38,8 @@ public class fragment_unapprovedtutorials extends Fragment {
         rvunapp5 = v.findViewById(R.id.unapp_rv_cat5);
         rvunapp5.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        rvunapp6 = v.findViewById(R.id.unapp_rv_cat6);
+        rvunapp6.setLayoutManager(new LinearLayoutManager(getContext()));
 
         buttonApproved = v.findViewById(R.id.btn_approved);
         buttonNotApproved = v.findViewById(R.id.btn_notApproved);
@@ -82,6 +84,14 @@ public class fragment_unapprovedtutorials extends Fragment {
         postVideoFeedAdapter4 = new PostVideoFeedAdapter(options4);
         rvunapp5.setAdapter(postVideoFeedAdapter4);
 
+        FirebaseRecyclerOptions<PostVideoFeed> options5 =
+                new FirebaseRecyclerOptions.Builder<PostVideoFeed>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("videos").child("Other").orderByChild("approvalStatus").equalTo("-1"), PostVideoFeed.class)
+                        .build();
+
+        postVideoFeedAdapter5 = new PostVideoFeedAdapter(options5);
+        rvunapp6.setAdapter(postVideoFeedAdapter5);
+
         return v;
     }
 
@@ -93,6 +103,7 @@ public class fragment_unapprovedtutorials extends Fragment {
         postVideoFeedAdapter2.startListening();
         postVideoFeedAdapter3.startListening();
         postVideoFeedAdapter4.startListening();
+        postVideoFeedAdapter5.startListening();
     }
 
     @Override
@@ -103,6 +114,7 @@ public class fragment_unapprovedtutorials extends Fragment {
         postVideoFeedAdapter2.startListening();
         postVideoFeedAdapter3.startListening();
         postVideoFeedAdapter4.startListening();
+        postVideoFeedAdapter5.startListening();
     }
 
 }

@@ -39,6 +39,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/myvideos_rv_cat5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

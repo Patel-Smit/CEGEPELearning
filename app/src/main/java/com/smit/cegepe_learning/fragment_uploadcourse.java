@@ -98,10 +98,10 @@ public class fragment_uploadcourse extends Fragment {
         });
 
         uploadTutorial.setOnClickListener(new View.OnClickListener() {
+
+
             @Override
             public void onClick(View view) {
-
-                uploadfile();
                 String categoryName = spinner.getSelectedItem().toString();
 
                 rootNode = FirebaseDatabase.getInstance();
@@ -139,6 +139,7 @@ public class fragment_uploadcourse extends Fragment {
                     videoLink.setText(null);
                     thumbnailView.setImageDrawable(getResources().getDrawable(R.drawable.thumbtemp));
                 }
+                preventTwoClick(view);
             }
 
             private String getFileExtension(Uri uri) {
@@ -245,5 +246,14 @@ public class fragment_uploadcourse extends Fragment {
 
             }
         });
+    }
+
+    public static void preventTwoClick(final View view) {
+        view.setEnabled(false);
+        view.postDelayed(new Runnable() {
+            public void run() {
+                view.setEnabled(true);
+            }
+        }, 2000);
     }
 }

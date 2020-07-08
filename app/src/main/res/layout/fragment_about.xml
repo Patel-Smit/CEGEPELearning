@@ -78,6 +78,8 @@
                         android:id="@+id/about_tv_TandCHeading"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
                         android:text="Terms and Conditions >"
                         android:textAlignment="center"
                         android:textSize="20dp"
@@ -94,7 +96,7 @@
 these Terms. These Terms apply to all visitors, users and others who access or use the Service. \n \n We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a
 revision is material we will try to provide at least 30 (change this) days' notice prior to any new terms
 taking effect. What constitutes a material change will be determined at our sole discretion.
- \n \n If you have any questions about these Terms, please admin \n \n"
+ \n \n If you have any questions about these Terms, please admin"
                         android:textAlignment="center"
                         android:textColor="#000000"
                         android:visibility="gone"
@@ -123,6 +125,8 @@ taking effect. What constitutes a material change will be determined at our sole
                         android:id="@+id/about_tv_repComm"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
                         android:text="Report a Bug/ Comments >"
                         android:textAlignment="center"
                         android:textSize="20dp"

@@ -63,12 +63,12 @@ public class fragment_profile extends Fragment {
         editProfile = (ImageButton) v.findViewById(R.id.profile_btn_edit);
         updateProfile = (ImageButton) v.findViewById(R.id.profile_btn_update);
 
-        SharedPreferences prefsTheme = getActivity().getSharedPreferences("saveTheme", getContext().MODE_PRIVATE);
+        /*SharedPreferences prefsTheme = getActivity().getSharedPreferences("saveTheme", getContext().MODE_PRIVATE);
         Boolean restoredTheme = prefsTheme.getBoolean("valueTheme", true);
         if (restoredTheme) {
             editProfile.setBackgroundResource(R.drawable.gradient_orange);
             updateProfile.setBackgroundResource(R.drawable.gradient_orange);
-        }
+        }*/
         editProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

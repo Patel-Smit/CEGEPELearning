@@ -15,10 +15,11 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:id="@+id/upload_titleBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
                 android:hint="Video Title">
 
@@ -34,6 +35,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:hint="Video Description">
@@ -81,6 +83,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:hint="Video Link">
@@ -99,14 +102,14 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="180dp"
                     android:orientation="horizontal"
                     android:gravity="center">
 
                     <ImageView
                         android:id="@+id/upload_iv_thumbnail"
-                        android:layout_width="250dp"
-                        android:layout_height="160dp"
+                        android:layout_width="210dp"
+                        android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"
                         android:src="@drawable/thumbtemp"></ImageView>
 
@@ -114,11 +117,11 @@
                         android:id="@+id/upload_uploadThumbnail"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="20dp"
                         android:layout_marginRight="10dp"
                         android:onClick="onClickLogout"
                         android:text="SELECT\nIMAGE"
-                        android:textSize="20sp"></Button>
+                        android:textSize="15sp"></Button>
 
                 </LinearLayout>
 
@@ -137,11 +140,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/gradient"
-                android:onClick="onClickLogout"
                 android:text="Upload"
                 android:textColor="#ffffff"
                 android:textSize="20sp"></Button>

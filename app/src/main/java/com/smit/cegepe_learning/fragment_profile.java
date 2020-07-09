@@ -29,7 +29,7 @@ public class fragment_profile extends Fragment {
 
     EditText naame, doob, ciity, emmail, paassword;
     TextInputLayout nameBox, dobBox, cityBox;
-    ImageButton editProfile, updateProfile;
+    Button editProfile, updateProfile;
     EditText updatecity;
     TextInputLayout updatecityBox;
     private DatabaseReference mDatabaseReference;
@@ -60,15 +60,15 @@ public class fragment_profile extends Fragment {
 
         updatecityBox = (TextInputLayout) v.findViewById(R.id.profile_updatecitybox);
 
-        editProfile = (ImageButton) v.findViewById(R.id.profile_btn_edit);
-        updateProfile = (ImageButton) v.findViewById(R.id.profile_btn_update);
+        editProfile = (Button) v.findViewById(R.id.profile_btn_edit);
+        updateProfile = (Button) v.findViewById(R.id.profile_btn_update);
 
-        /*SharedPreferences prefsTheme = getActivity().getSharedPreferences("saveTheme", getContext().MODE_PRIVATE);
+        SharedPreferences prefsTheme = getActivity().getSharedPreferences("saveTheme", getContext().MODE_PRIVATE);
         Boolean restoredTheme = prefsTheme.getBoolean("valueTheme", true);
         if (restoredTheme) {
             editProfile.setBackgroundResource(R.drawable.gradient_orange);
             updateProfile.setBackgroundResource(R.drawable.gradient_orange);
-        }*/
+        }
         editProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,6 +77,7 @@ public class fragment_profile extends Fragment {
 
                 updatecityBox.setVisibility(View.VISIBLE);
                 updatecity.setVisibility(View.VISIBLE);
+                updatecity.requestFocus();
 
                 editProfile.setVisibility(View.GONE);
                 updateProfile.setVisibility(View.VISIBLE);

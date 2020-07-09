@@ -20,8 +20,8 @@
                 android:src="@drawable/mainlogo" />
 
             <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:id="@+id/profile_nameBox"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -37,12 +37,12 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:id="@+id/profile_dobBox"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
                 android:hint="@string/birthday">
 
@@ -54,75 +54,50 @@
                     android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal"
-                android:gravity="center">
-
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:id="@+id/profile_cityBox"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:hint="@string/city">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/profile_et_city"
-                        android:layout_width="300dp"
-                        android:layout_height="wrap_content"
-                        android:focusable="false"
-                        android:inputType="text" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:id="@+id/profile_updatecitybox"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:hint="@string/city"
-                    android:visibility="gone">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/profile_et_updatecity"
-                        android:layout_width="300dp"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:visibility="gone" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <ImageButton
-                    android:id="@+id/profile_btn_edit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="1dp"
-                    android:layout_marginRight="10dp"
-                    android:src="@drawable/icon_edit"
-                    android:background="#00000000"></ImageButton>
-
-                <ImageButton
-                    android:id="@+id/profile_btn_update"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="1dp"
-                    android:layout_marginRight="10dp"
-                    android:src="@drawable/icon_check"
-                    android:background="#00000000"
-                    android:visibility="gone"></ImageButton>
-
-            </LinearLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/profile_cityBox"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:hint="@string/city">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/profile_et_city"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="false"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/profile_updatecitybox"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:hint="@string/city"
+                android:visibility="gone">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/profile_et_updatecity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:visibility="gone" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
                 android:hint="@string/email">
 
@@ -138,8 +113,8 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
                 android:hint="@string/password">
 
@@ -150,6 +125,33 @@
                     android:focusable="false"
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/profile_btn_edit"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="Edit City"
+                android:textSize="20sp"
+                android:textColor="#FFFFFF"
+                android:background="@drawable/gradient"></Button>
+
+            <Button
+                android:id="@+id/profile_btn_update"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="Save"
+                android:textSize="20sp"
+                android:textColor="#FFFFFF"
+                android:background="@drawable/gradient"
+                android:visibility="gone"></Button>
 
         </LinearLayout>
     </ScrollView>

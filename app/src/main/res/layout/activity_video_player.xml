@@ -22,49 +22,65 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"></com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView>
 
-            <TextView
-                android:id="@+id/videoplayer_title"
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                android:text="TITLE"
-                android:textStyle="bold"
-                android:textSize="25sp"
-                android:textColor="#000000"></TextView>
+                android:layout_margin="10dp">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:orientation="horizontal">
-
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="By: "
-                    android:textSize="22sp"
-                    android:textColor="#000000"></TextView>
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/videoplayer_creator"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:text="TITLE"
-                    android:textSize="22sp"
-                    android:textColor="#000000"></TextView>
+                    <TextView
+                        android:id="@+id/videoplayer_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:text="TITLE"
+                        android:textColor="#000000"
+                        android:textSize="18sp"
+                        android:textStyle="bold"></TextView>
 
-            </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="3dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="By: "
+                            android:textColor="#000000"
+                            android:textSize="15sp"></TextView>
+
+                        <TextView
+                            android:id="@+id/videoplayer_creator"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="10dp"
+                            android:text="TITLE"
+                            android:textColor="#000000"
+                            android:textSize="15sp"></TextView>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:background="@android:color/darker_gray" />
 
-            <TextView
+            <!--<TextView
                 android:id="@+id/videoplayer_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -72,7 +88,52 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"
                 android:text="DESCRIPTION"
-                android:textSize="20sp"></TextView>
+                android:textSize="20sp"></TextView>-->
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="5dp"
+                        android:paddingTop="5dp"
+                        android:paddingRight="5dp"
+                        android:text="Description:"
+                        android:textSize="18dp"></TextView>
+
+                    <TextView
+                        android:id="@+id/videoplayer_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:text=".................."
+                        android:textColor="#000000"></TextView>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                android:id="@+id/videoplayer_btn_delete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/gradient_red"
+                android:text="Delete Video"
+                android:textColor="#ffffff"
+                android:textSize="20sp"
+                android:visibility="visible"></Button>
 
         </LinearLayout>
     </ScrollView>

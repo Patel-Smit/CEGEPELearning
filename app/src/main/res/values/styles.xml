@@ -35,13 +35,13 @@
     <style name="MainActivityDarkTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">#ff9f10</item>
         <item name="colorPrimaryDark">#000000</item>
-        <item name="colorAccent">#00c6fb</item>
+        <item name="colorAccent">#FFA000</item>
     </style>
 
     <style name="MainActivityDarkThemeActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">#ff9f10</item>
         <item name="colorPrimaryDark">#000000</item>
-        <item name="colorAccent">#00c6fb</item>
+        <item name="colorAccent">#FFA000</item>
     </style>
 
 </resources>

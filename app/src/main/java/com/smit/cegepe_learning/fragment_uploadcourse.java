@@ -25,6 +25,7 @@ import androidx.fragment.app.Fragment;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -46,6 +47,7 @@ public class fragment_uploadcourse extends Fragment {
     FirebaseDatabase rootNode;
     DatabaseReference reference, referenceCategory;
     EditText videoTitle, videoDescription, videoCategory, videoLink;
+    TextInputLayout titleBox;
     Button uploadTutorial, chooseThumbnail;
     Spinner spinner;
     ValueEventListener listener;
@@ -69,6 +71,8 @@ public class fragment_uploadcourse extends Fragment {
         //videoCategory = (EditText) v.findViewById(R.id.upload_videoCategory);
         videoLink = (EditText) v.findViewById(R.id.upload_videoLink);
         uploadTutorial = (Button) v.findViewById(R.id.upload_uploadTutorial);
+
+        titleBox = (TextInputLayout) v.findViewById(R.id.upload_titleBox);
 
         SharedPreferences prefsTheme = getActivity().getSharedPreferences("saveTheme", getContext().MODE_PRIVATE);
         Boolean restoredTheme = prefsTheme.getBoolean("valueTheme", true);
@@ -126,7 +130,7 @@ public class fragment_uploadcourse extends Fragment {
                     videoLink.setError("Please enter Link");
                     videoLink.requestFocus();
                 } else {
-                    spinnerDataList.clear();
+                    //spinnerDataList.clear();
                     adapter.notifyDataSetChanged();
                     UploadVideoHelperClass uploadVideoHelperClass = new UploadVideoHelperClass(vTitle, vDescription, vCategory, vLink, vUser, vApproved, vId, "https://firebasestorage.googleapis.com/v0/b/cegep-e-learning.appspot.com/o/CourseLogos%2FPresentationWallpaper.jpg?alt=media&token=ff12c899-2867-4b39-9403-d27e9dd9457d");
                     reference.child(vId).setValue(uploadVideoHelperClass);

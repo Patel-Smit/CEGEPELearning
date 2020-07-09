@@ -62,6 +62,7 @@ public class PostVideoFeedAdapter extends FirebaseRecyclerAdapter<PostVideoFeed,
         final String couTitle = postVideoFeed.getTitle();
         final String couDescription = postVideoFeed.getDescription();
         final String couCreator = postVideoFeed.getUser();
+        final String couVideoId = postVideoFeed.getId();
         holder.v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
@@ -69,6 +70,8 @@ public class PostVideoFeedAdapter extends FirebaseRecyclerAdapter<PostVideoFeed,
                 myIntent.putExtra("linkValue", couLink);
                 myIntent.putExtra("titleValue", couTitle);
                 myIntent.putExtra("descriptionValue", couDescription);
+                myIntent.putExtra("userIdValue", couCreator);
+                myIntent.putExtra("videoIdValue", couVideoId);
 
                 databaseReference1 = FirebaseDatabase.getInstance().getReference().child("users").child(postVideoFeed.getUser());
 
@@ -82,6 +85,8 @@ public class PostVideoFeedAdapter extends FirebaseRecyclerAdapter<PostVideoFeed,
                         myIntent.putExtra("descriptionValue", couDescription);
                         System.out.println(userName + " ehehehhehehe");
                         myIntent.putExtra("creatorValue", userName);
+                        myIntent.putExtra("userIdValue", couCreator);
+                        myIntent.putExtra("videoIdValue", couVideoId);
                         view.getContext().startActivity(myIntent);
 
 

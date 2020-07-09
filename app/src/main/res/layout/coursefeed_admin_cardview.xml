@@ -99,7 +99,8 @@
                         android:id="@+id/ll_appovalbuttons"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:weightSum="2">
 
                         <Button
                             android:id="@+id/btn_approved"
@@ -109,7 +110,8 @@
                             android:background="#00D01B"
                             android:text="\u2713"
                             android:textColor="#FFFFFF"
-                            android:textStyle="bold"></Button>
+                            android:textStyle="bold"
+                            android:layout_weight="1"></Button>
 
                         <Button
                             android:id="@+id/btn_notApproved"
@@ -119,7 +121,8 @@
                             android:background="#F74848"
                             android:text="X"
                             android:textColor="#FFFFFF"
-                            android:textStyle="bold"></Button>
+                            android:textStyle="bold"
+                            android:layout_weight="1"></Button>
                     </LinearLayout>
                 </LinearLayout>
 

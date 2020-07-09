@@ -16,8 +16,8 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class fragment_unapprovedtutorials extends Fragment {
-    private RecyclerView rvunapp1, rvunapp2, rvunapp3, rvunapp4, rvunapp5, rvunapp6;
-    private PostVideoFeedAdapter postVideoFeedAdapter, postVideoFeedAdapter1, postVideoFeedAdapter2, postVideoFeedAdapter3, postVideoFeedAdapter4, postVideoFeedAdapter5;
+    private RecyclerView rvunapp1, rvunapp2, rvunapp3, rvunapp4, rvunapp5, rvunapp6, rvunapp7, rvunapp8, rvunapp9, rvunapp10, rvunapp11, rvunapp12;
+    private PostVideoFeedAdapter postVideoFeedAdapter, postVideoFeedAdapter1, postVideoFeedAdapter2, postVideoFeedAdapter3, postVideoFeedAdapter4, postVideoFeedAdapter5, postVideoFeedAdapter6, postVideoFeedAdapter7, postVideoFeedAdapter8, postVideoFeedAdapter9, postVideoFeedAdapter10, postVideoFeedAdapter11;
     Button buttonApproved, buttonNotApproved;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -40,6 +40,24 @@ public class fragment_unapprovedtutorials extends Fragment {
 
         rvunapp6 = v.findViewById(R.id.unapp_rv_cat6);
         rvunapp6.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        rvunapp7 = v.findViewById(R.id.unapp_rv_cat7);
+        rvunapp7.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        rvunapp8 = v.findViewById(R.id.unapp_rv_cat8);
+        rvunapp8.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        rvunapp9 = v.findViewById(R.id.unapp_rv_cat9);
+        rvunapp9.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        rvunapp10 = v.findViewById(R.id.unapp_rv_cat10);
+        rvunapp10.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        rvunapp11 = v.findViewById(R.id.unapp_rv_cat11);
+        rvunapp11.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        rvunapp12 = v.findViewById(R.id.unapp_rv_cat12);
+        rvunapp12.setLayoutManager(new LinearLayoutManager(getContext()));
 
         buttonApproved = v.findViewById(R.id.btn_approved);
         buttonNotApproved = v.findViewById(R.id.btn_notApproved);
@@ -86,11 +104,59 @@ public class fragment_unapprovedtutorials extends Fragment {
 
         FirebaseRecyclerOptions<PostVideoFeed> options5 =
                 new FirebaseRecyclerOptions.Builder<PostVideoFeed>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("videos").child("Other").orderByChild("approvalStatus").equalTo("-1"), PostVideoFeed.class)
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("videos").child("Designing Databases").orderByChild("approvalStatus").equalTo("-1"), PostVideoFeed.class)
                         .build();
 
         postVideoFeedAdapter5 = new PostVideoFeedAdapter(options5);
         rvunapp6.setAdapter(postVideoFeedAdapter5);
+
+        FirebaseRecyclerOptions<PostVideoFeed> options6 =
+                new FirebaseRecyclerOptions.Builder<PostVideoFeed>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("videos").child("Graphics Designing").orderByChild("approvalStatus").equalTo("-1"), PostVideoFeed.class)
+                        .build();
+
+        postVideoFeedAdapter6 = new PostVideoFeedAdapter(options6);
+        rvunapp7.setAdapter(postVideoFeedAdapter6);
+
+        FirebaseRecyclerOptions<PostVideoFeed> options7 =
+                new FirebaseRecyclerOptions.Builder<PostVideoFeed>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("videos").child("Business").orderByChild("approvalStatus").equalTo("-1"), PostVideoFeed.class)
+                        .build();
+
+        postVideoFeedAdapter7 = new PostVideoFeedAdapter(options7);
+        rvunapp8.setAdapter(postVideoFeedAdapter7);
+
+        FirebaseRecyclerOptions<PostVideoFeed> options8 =
+                new FirebaseRecyclerOptions.Builder<PostVideoFeed>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("videos").child("Mathematics").orderByChild("approvalStatus").equalTo("-1"), PostVideoFeed.class)
+                        .build();
+
+        postVideoFeedAdapter8 = new PostVideoFeedAdapter(options8);
+        rvunapp9.setAdapter(postVideoFeedAdapter8);
+
+        FirebaseRecyclerOptions<PostVideoFeed> options9 =
+                new FirebaseRecyclerOptions.Builder<PostVideoFeed>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("videos").child("Networking").orderByChild("approvalStatus").equalTo("-1"), PostVideoFeed.class)
+                        .build();
+
+        postVideoFeedAdapter9 = new PostVideoFeedAdapter(options9);
+        rvunapp10.setAdapter(postVideoFeedAdapter9);
+
+        FirebaseRecyclerOptions<PostVideoFeed> options10 =
+                new FirebaseRecyclerOptions.Builder<PostVideoFeed>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("videos").child("Game Development").orderByChild("approvalStatus").equalTo("-1"), PostVideoFeed.class)
+                        .build();
+
+        postVideoFeedAdapter10 = new PostVideoFeedAdapter(options10);
+        rvunapp11.setAdapter(postVideoFeedAdapter10);
+
+        FirebaseRecyclerOptions<PostVideoFeed> options11 =
+                new FirebaseRecyclerOptions.Builder<PostVideoFeed>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("videos").child("Other").orderByChild("approvalStatus").equalTo("-1"), PostVideoFeed.class)
+                        .build();
+
+        postVideoFeedAdapter11 = new PostVideoFeedAdapter(options11);
+        rvunapp12.setAdapter(postVideoFeedAdapter11);
 
         return v;
     }
@@ -104,6 +170,12 @@ public class fragment_unapprovedtutorials extends Fragment {
         postVideoFeedAdapter3.startListening();
         postVideoFeedAdapter4.startListening();
         postVideoFeedAdapter5.startListening();
+        postVideoFeedAdapter6.startListening();
+        postVideoFeedAdapter7.startListening();
+        postVideoFeedAdapter8.startListening();
+        postVideoFeedAdapter9.startListening();
+        postVideoFeedAdapter10.startListening();
+        postVideoFeedAdapter11.startListening();
     }
 
     @Override
@@ -115,6 +187,12 @@ public class fragment_unapprovedtutorials extends Fragment {
         postVideoFeedAdapter3.startListening();
         postVideoFeedAdapter4.startListening();
         postVideoFeedAdapter5.startListening();
+        postVideoFeedAdapter6.startListening();
+        postVideoFeedAdapter7.startListening();
+        postVideoFeedAdapter8.startListening();
+        postVideoFeedAdapter9.startListening();
+        postVideoFeedAdapter10.startListening();
+        postVideoFeedAdapter11.startListening();
     }
 
 }

@@ -30,12 +30,14 @@ public class CourseVideoFeedActivity extends AppCompatActivity {
         }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_video_feed);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         rvFeed = findViewById(R.id.videofeed_rv_feed);
         rvFeed.setLayoutManager(new LinearLayoutManager(this));
 
         Intent i = getIntent();
         categoryFetchName = i.getStringExtra("catregoryValue");
+        setTitle(categoryFetchName);
 
         FirebaseRecyclerOptions<PostVideoFeed> options =
                 new FirebaseRecyclerOptions.Builder<PostVideoFeed>()

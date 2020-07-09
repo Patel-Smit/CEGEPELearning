@@ -27,8 +27,8 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class fragment_myvideos extends Fragment {
-    private RecyclerView rvMyVideos, rvCat1, rvCat2, rvCat3, rvCat4, rvCat5;
-    private PostVideoFeedAdapter postVideoFeedAdapter, postVideoFeedAdapter1, postVideoFeedAdapter2, postVideoFeedAdapter3, postVideoFeedAdapter4, postVideoFeedAdapter5;
+    private RecyclerView rvMyVideos, rvCat1, rvCat2, rvCat3, rvCat4, rvCat5, rvCat6, rvCat7, rvCat8, rvCat9, rvCat10, rvCat11;
+    private PostVideoFeedAdapter postVideoFeedAdapter, postVideoFeedAdapter1, postVideoFeedAdapter2, postVideoFeedAdapter3, postVideoFeedAdapter4, postVideoFeedAdapter5, postVideoFeedAdapter6, postVideoFeedAdapter7, postVideoFeedAdapter8, postVideoFeedAdapter9, postVideoFeedAdapter10, postVideoFeedAdapter11;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_myvideos, container, false);
@@ -52,6 +52,24 @@ public class fragment_myvideos extends Fragment {
 
         rvCat5 = v.findViewById(R.id.myvideos_rv_cat5);
         rvCat5.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        rvCat6 = v.findViewById(R.id.myvideos_rv_cat6);
+        rvCat6.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        rvCat7 = v.findViewById(R.id.myvideos_rv_cat7);
+        rvCat7.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        rvCat8 = v.findViewById(R.id.myvideos_rv_cat8);
+        rvCat8.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        rvCat9 = v.findViewById(R.id.myvideos_rv_cat9);
+        rvCat9.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        rvCat10 = v.findViewById(R.id.myvideos_rv_cat10);
+        rvCat10.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        rvCat11 = v.findViewById(R.id.myvideos_rv_cat11);
+        rvCat11.setLayoutManager(new LinearLayoutManager(getContext()));
 
         FirebaseRecyclerOptions<PostVideoFeed> options =
                 new FirebaseRecyclerOptions.Builder<PostVideoFeed>()
@@ -95,11 +113,59 @@ public class fragment_myvideos extends Fragment {
 
         FirebaseRecyclerOptions<PostVideoFeed> options5 =
                 new FirebaseRecyclerOptions.Builder<PostVideoFeed>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("videos").child("Other").orderByChild("approvalStatus").equalTo("0"), PostVideoFeed.class)
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("videos").child("Designing Databases").orderByChild("user").equalTo(MainActivity.userId), PostVideoFeed.class)
                         .build();
 
         postVideoFeedAdapter5 = new PostVideoFeedAdapter(options5);
         rvCat5.setAdapter(postVideoFeedAdapter5);
+
+        FirebaseRecyclerOptions<PostVideoFeed> options6 =
+                new FirebaseRecyclerOptions.Builder<PostVideoFeed>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("videos").child("Graphics Designing").orderByChild("user").equalTo(MainActivity.userId), PostVideoFeed.class)
+                        .build();
+
+        postVideoFeedAdapter6 = new PostVideoFeedAdapter(options6);
+        rvCat6.setAdapter(postVideoFeedAdapter6);
+
+        FirebaseRecyclerOptions<PostVideoFeed> options7 =
+                new FirebaseRecyclerOptions.Builder<PostVideoFeed>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("videos").child("Business").orderByChild("user").equalTo(MainActivity.userId), PostVideoFeed.class)
+                        .build();
+
+        postVideoFeedAdapter7 = new PostVideoFeedAdapter(options7);
+        rvCat7.setAdapter(postVideoFeedAdapter7);
+
+        FirebaseRecyclerOptions<PostVideoFeed> options8 =
+                new FirebaseRecyclerOptions.Builder<PostVideoFeed>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("videos").child("Mathematics").orderByChild("user").equalTo(MainActivity.userId), PostVideoFeed.class)
+                        .build();
+
+        postVideoFeedAdapter8 = new PostVideoFeedAdapter(options8);
+        rvCat8.setAdapter(postVideoFeedAdapter8);
+
+        FirebaseRecyclerOptions<PostVideoFeed> options9 =
+                new FirebaseRecyclerOptions.Builder<PostVideoFeed>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("videos").child("Networking").orderByChild("user").equalTo(MainActivity.userId), PostVideoFeed.class)
+                        .build();
+
+        postVideoFeedAdapter9 = new PostVideoFeedAdapter(options9);
+        rvCat9.setAdapter(postVideoFeedAdapter9);
+
+        FirebaseRecyclerOptions<PostVideoFeed> options10 =
+                new FirebaseRecyclerOptions.Builder<PostVideoFeed>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("videos").child("Game Development").orderByChild("user").equalTo(MainActivity.userId), PostVideoFeed.class)
+                        .build();
+
+        postVideoFeedAdapter10 = new PostVideoFeedAdapter(options10);
+        rvCat10.setAdapter(postVideoFeedAdapter10);
+
+        FirebaseRecyclerOptions<PostVideoFeed> options11 =
+                new FirebaseRecyclerOptions.Builder<PostVideoFeed>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("videos").child("Other").orderByChild("user").equalTo(MainActivity.userId), PostVideoFeed.class)
+                        .build();
+
+        postVideoFeedAdapter11 = new PostVideoFeedAdapter(options11);
+        rvCat11.setAdapter(postVideoFeedAdapter11);
 
         return v;
     }
@@ -113,6 +179,12 @@ public class fragment_myvideos extends Fragment {
         postVideoFeedAdapter3.startListening();
         postVideoFeedAdapter4.startListening();
         postVideoFeedAdapter5.startListening();
+        postVideoFeedAdapter6.startListening();
+        postVideoFeedAdapter7.startListening();
+        postVideoFeedAdapter8.startListening();
+        postVideoFeedAdapter9.startListening();
+        postVideoFeedAdapter10.startListening();
+        postVideoFeedAdapter11.startListening();
     }
 
     @Override
@@ -124,5 +196,11 @@ public class fragment_myvideos extends Fragment {
         postVideoFeedAdapter3.stopListening();
         postVideoFeedAdapter4.stopListening();
         postVideoFeedAdapter5.stopListening();
+        postVideoFeedAdapter6.stopListening();
+        postVideoFeedAdapter7.stopListening();
+        postVideoFeedAdapter8.stopListening();
+        postVideoFeedAdapter9.stopListening();
+        postVideoFeedAdapter10.stopListening();
+        postVideoFeedAdapter11.stopListening();
     }
 }

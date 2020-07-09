@@ -15,7 +15,9 @@
         <activity
             android:name=".VideoPlayerActivity"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".CourseVideoFeedActivity" />
+        <activity
+            android:name=".CourseVideoFeedActivity"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".ForgotPasswordActivity"
             android:theme="@style/SignUpTheme" />

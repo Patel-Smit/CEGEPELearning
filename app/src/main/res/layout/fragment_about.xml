@@ -127,7 +127,7 @@ taking effect. What constitutes a material change will be determined at our sole
                         android:layout_height="wrap_content"
                         android:paddingTop="5dp"
                         android:paddingBottom="5dp"
-                        android:text="Report a Bug/ Comments >"
+                        android:text="Report a Bug or Comments >"
                         android:textAlignment="center"
                         android:textSize="20dp"
                         android:textColor="#FFFFFF"

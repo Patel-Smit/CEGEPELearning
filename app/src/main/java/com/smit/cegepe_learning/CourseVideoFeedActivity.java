@@ -18,6 +18,7 @@ public class CourseVideoFeedActivity extends AppCompatActivity {
     private RecyclerView rvFeed;
     private PostVideoFeedAdapter postVideoFeedAdapter;
     String categoryFetchName;
+    TextView nothingToShow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +47,6 @@ public class CourseVideoFeedActivity extends AppCompatActivity {
 
         postVideoFeedAdapter = new PostVideoFeedAdapter(options);
         rvFeed.setAdapter(postVideoFeedAdapter);
-        System.out.println(categoryFetchName);
     }
 
     @Override

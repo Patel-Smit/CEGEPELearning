@@ -58,6 +58,21 @@ public class PostVideoFeedAdapter extends FirebaseRecyclerAdapter<PostVideoFeed,
         Picasso.get().load(postVideoFeed.getThumbnailLink()).into(holder.img);
         //  holder.user.setText(user1.getName());
 
+        holder.title.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                holder.title.setMaxLines(2);
+            }
+        });
+
+        holder.title.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                holder.title.setMaxLines(5);
+                return false;
+            }
+        });
+
         final String couLink = postVideoFeed.getLink();
         final String couTitle = postVideoFeed.getTitle();
         final String couDescription = postVideoFeed.getDescription();

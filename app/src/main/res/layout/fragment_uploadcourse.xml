@@ -44,8 +44,8 @@
                     android:id="@+id/upload_videoDescription"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:maxLength="200" />
+                    android:inputType="textMultiLine"
+                    android:maxLength="700" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -115,7 +115,7 @@
 
                     <Button
                         android:id="@+id/upload_uploadThumbnail"
-                        android:layout_width="100dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="10dp"

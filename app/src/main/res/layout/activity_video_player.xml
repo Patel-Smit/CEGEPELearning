@@ -133,7 +133,7 @@
                 android:text="Delete Video"
                 android:textColor="#ffffff"
                 android:textSize="20sp"
-                android:visibility="visible"></Button>
+                android:visibility="gone"></Button>
 
         </LinearLayout>
     </ScrollView>

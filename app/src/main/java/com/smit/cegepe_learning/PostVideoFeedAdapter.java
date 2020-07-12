@@ -2,17 +2,13 @@ package com.smit.cegepe_learning;
 
 import android.content.Intent;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toolbar;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DataSnapshot;
@@ -38,9 +34,7 @@ public class PostVideoFeedAdapter extends FirebaseRecyclerAdapter<PostVideoFeed,
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                System.out.println(dataSnapshot.child("name"));
                 holder.user.setText(dataSnapshot.child("name").getValue().toString());
-                // userName = dataSnapshot.child("name").getValue().toString();
             }
 
             @Override
@@ -56,7 +50,6 @@ public class PostVideoFeedAdapter extends FirebaseRecyclerAdapter<PostVideoFeed,
         holder.link.setText(postVideoFeed.getLink());
         holder.approvalStatus.setText(postVideoFeed.getApprovalStatus());
         Picasso.get().load(postVideoFeed.getThumbnailLink()).into(holder.img);
-        //  holder.user.setText(user1.getName());
 
         holder.title.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,7 +91,6 @@ public class PostVideoFeedAdapter extends FirebaseRecyclerAdapter<PostVideoFeed,
                         myIntent.putExtra("linkValue", couLink);
                         myIntent.putExtra("titleValue", couTitle);
                         myIntent.putExtra("descriptionValue", couDescription);
-                        System.out.println(userName + " ehehehhehehe");
                         myIntent.putExtra("creatorValue", userName);
                         myIntent.putExtra("userIdValue", couCreator);
                         myIntent.putExtra("videoIdValue", couVideoId);

@@ -1,17 +1,13 @@
 package com.smit.cegepe_learning;
 
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.os.ResultReceiver;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -80,7 +76,6 @@ public class frag_chat extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 muser.clear();
                 for (DataSnapshot Snapshot : dataSnapshot.getChildren()) {
-                    System.out.println(Snapshot.child("name").getValue().toString());
                     UserIdClass user = new UserIdClass(Snapshot.getKey(),
                             Snapshot.child("name").getValue().toString(),
                             Snapshot.child("dob").getValue().toString(),

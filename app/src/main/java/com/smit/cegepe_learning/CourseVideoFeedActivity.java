@@ -3,22 +3,17 @@ package com.smit.cegepe_learning;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.widget.ImageView;
-import android.widget.TextView;
-
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.FirebaseDatabase;
-import com.squareup.picasso.Picasso;
+
 
 public class CourseVideoFeedActivity extends AppCompatActivity {
     private RecyclerView rvFeed;
     private PostVideoFeedAdapter postVideoFeedAdapter;
     String categoryFetchName;
-    TextView nothingToShow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

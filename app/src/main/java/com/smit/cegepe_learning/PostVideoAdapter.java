@@ -6,10 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.squareup.picasso.Picasso;
@@ -26,7 +24,6 @@ public class PostVideoAdapter extends FirebaseRecyclerAdapter<PostVideos, PostVi
         holder.v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println(couCatName + "chk");
                 Intent myIntent = new Intent(view.getContext(), CourseVideoFeedActivity.class);
                 myIntent.putExtra("catregoryValue", couCatName);
                 myIntent.putExtra("catregoryImageLink", couCatLink);

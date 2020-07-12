@@ -7,10 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -43,9 +41,7 @@ public class UserAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        System.out.println(musers.toString());
         final UserIdClass user = musers.get(position);
-        //System.out.println(user.getName());
         TextView tvUser = holder.itemView.findViewById(R.id.chat_tv_user);
         TextView tvUsertype = holder.itemView.findViewById(R.id.chat_tv_usertype);
         ImageView imgFp = holder.itemView.findViewById(R.id.chat_iv_userImage);
@@ -56,15 +52,12 @@ public class UserAdapter extends RecyclerView.Adapter {
             tvUsertype.setText("(" + user.getUsertype().toUpperCase() + ")");
         }
         if (user.getUsertype().toLowerCase().equals("admin")) {
-            //holder.itemView.findViewById(R.id.chat_iv_userImage).setBackgroundResource(R.drawable.icon_admin);
             imgFp.setImageResource(R.drawable.icon_admin);
             imgFp.setBackgroundResource(R.drawable.rounded_backgroundadmin);
         } else if (user.getUsertype().toLowerCase().equals("teacher")) {
-            //holder.itemView.findViewById(R.id.chat_iv_userImage).setBackgroundResource(R.drawable.icon_teacher);
             imgFp.setImageResource(R.drawable.icon_teacher);
             imgFp.setBackgroundResource(R.drawable.rounded_backgroundteacher);
         } else {
-            //holder.itemView.findViewById(R.id.chat_iv_userImage).setBackgroundResource(R.drawable.icon_user);
             imgFp.setImageResource(R.drawable.icon_user);
             imgFp.setBackgroundResource(R.drawable.rounded_background);
         }

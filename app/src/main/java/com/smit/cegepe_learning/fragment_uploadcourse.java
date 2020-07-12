@@ -17,11 +17,9 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -35,8 +33,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -68,7 +64,6 @@ public class fragment_uploadcourse extends Fragment {
 
         videoTitle = (EditText) v.findViewById(R.id.upload_videoTitle);
         videoDescription = (EditText) v.findViewById(R.id.upload_videoDescription);
-        //videoCategory = (EditText) v.findViewById(R.id.upload_videoCategory);
         videoLink = (EditText) v.findViewById(R.id.upload_videoLink);
         uploadTutorial = (Button) v.findViewById(R.id.upload_uploadTutorial);
 
@@ -130,7 +125,6 @@ public class fragment_uploadcourse extends Fragment {
                     videoLink.setError("Please enter Link");
                     videoLink.requestFocus();
                 } else {
-                    //spinnerDataList.clear();
                     adapter.notifyDataSetChanged();
                     YouTubeHelper youTubeHelper = new YouTubeHelper();
                     String vLinkExtracted = youTubeHelper.extractVideoIdFromUrl(videoLink.getText().toString());
@@ -183,12 +177,6 @@ public class fragment_uploadcourse extends Fragment {
                                             });
                                         }
                                     }
-                                    ////Toast.makeText(getContext(), "Upload successful", Toast.LENGTH_LONG).show();
-                                    //   UploadUri upload = new UploadUri(taskSnapshot.getDownloadUrl().toString());
-                                    //   String uploadId = mDatabaseRef.push().getKey();
-
-                                    //   mDatabaseRef.child("thumbnailLink").setValue(taskSnapshot.getMetadata().getReference().getDownloadUrl().toString());
-                                    //   dwString[0] =  taskSnapshot.getMetadata().getReference().getDownloadUrl().toString();
 
                                 }
                             })
@@ -207,7 +195,7 @@ public class fragment_uploadcourse extends Fragment {
                             });
 
                 } else {
-                    //Toast.makeText(getContext(), "No file selected", Toast.LENGTH_SHORT).show();
+
                 }
 
                 return dwString;

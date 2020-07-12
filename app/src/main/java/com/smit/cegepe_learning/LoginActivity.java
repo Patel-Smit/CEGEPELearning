@@ -2,7 +2,6 @@ package com.smit.cegepe_learning;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,7 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
@@ -27,6 +25,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText loginEmail, loginPassword;
     Button loginBtn;
     FirebaseAuth mFirebaseAuth;
+    Animation shake;
 
     private FirebaseAuth.AuthStateListener mAuthStateListener;
 
@@ -51,7 +50,6 @@ public class LoginActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
                 if (mFirebaseUser != null) {
-                    //Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
                     if (!mFirebaseAuth.getCurrentUser().isEmailVerified()) {
                         Toast.makeText(LoginActivity.this, "Please verify your email before signing in", Toast.LENGTH_SHORT).show();
                     } else {
@@ -60,7 +58,7 @@ public class LoginActivity extends AppCompatActivity {
                         startActivity(i);
                     }
                 } else {
-                    //Toast.makeText(LoginActivity.this, "Please login again", Toast.LENGTH_SHORT).show();
+
                 }
             }
         };
@@ -68,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Animation shake = AnimationUtils.loadAnimation(getApplication(), R.anim.shake_animation);
+                shake = AnimationUtils.loadAnimation(getApplication(), R.anim.shake_animation);
                 final String emailId = loginEmail.getText().toString();
                 String passwd = loginPassword.getText().toString();
                 if (emailId.isEmpty()) {
@@ -94,23 +92,26 @@ public class LoginActivity extends AppCompatActivity {
                             if (!task.isSuccessful()) {
                                 if (task.getException().getMessage().equals("The password is invalid or the user does not have a password.")) {
                                     passwordHolder.setBoxStrokeColor(getResources().getColor(R.color.colorRed));
+                                    loginPassword.startAnimation(shake);
+                                    passwordHolder.startAnimation(shake);
                                     loginPassword.requestFocus();
                                     Toast.makeText(LoginActivity.this, "Wrong Password", Toast.LENGTH_SHORT).show();
                                 } else if (task.getException().getMessage().equals("There is no user record corresponding to this identifier. The user may have been deleted.")) {
                                     emailHolder.setBoxStrokeColor(getResources().getColor(R.color.colorRed));
+                                    loginEmail.startAnimation(shake);
+                                    emailHolder.startAnimation(shake);
                                     loginEmail.requestFocus();
                                     Toast.makeText(LoginActivity.this, "User not found", Toast.LENGTH_SHORT).show();
                                 } else if (task.getException().getMessage().equals("The email address is badly formatted.")) {
                                     emailHolder.setBoxStrokeColor(getResources().getColor(R.color.colorRed));
+                                    loginEmail.startAnimation(shake);
+                                    emailHolder.startAnimation(shake);
                                     loginEmail.requestFocus();
                                     Toast.makeText(LoginActivity.this, "Email Formatted Badly", Toast.LENGTH_SHORT).show();
                                 } else {
-                                    System.out.println("!!!" + task.getException().toString() + "!!!");
                                     Toast.makeText(LoginActivity.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
                                 }
-                                //Toast.makeText(LoginActivity.this, "Error while Login!", Toast.LENGTH_SHORT).show();
-                                //emailHolder.setBoxStrokeColor(getResources().getColor(R.color.colorRed));
-                                //passwordHolder.setBoxStrokeColor(getResources().getColor(R.color.colorRed));
+
                             } else {
                                 if (!mFirebaseAuth.getCurrentUser().isEmailVerified()) {
                                     Toast.makeText(LoginActivity.this, "Please verify your email before signing in", Toast.LENGTH_SHORT).show();
@@ -140,7 +141,6 @@ public class LoginActivity extends AppCompatActivity {
         forgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Toast.makeText(LoginActivity.this, "Activity under construction!", Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
                 startActivity(i);
             }

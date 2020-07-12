@@ -2,7 +2,6 @@ package com.smit.cegepe_learning;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -14,7 +13,6 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
@@ -122,7 +120,6 @@ public class SignupActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (!task.isSuccessful()) {
-                                System.out.println("!!!" + task.getException().toString() + "!!!!!!!!!!!!!!!!!!!");
                                 if (task.getException().getMessage().equals("The given password is invalid. [ Password should be at least 6 characters ]")) {
                                     Toast.makeText(SignupActivity.this, "Password should be at least 6 characters", Toast.LENGTH_SHORT).show();
                                     signupPassword.requestFocus();
@@ -133,7 +130,6 @@ public class SignupActivity extends AppCompatActivity {
                                     Toast.makeText(SignupActivity.this, "Email already registered with another account", Toast.LENGTH_SHORT).show();
                                     signupEmail.requestFocus();
                                 } else {
-                                    System.out.println("----------" + task.getException().getMessage() + "--------");
                                     Toast.makeText(SignupActivity.this, "Signup Unsuccessful, Please try again", Toast.LENGTH_SHORT).show();
                                 }
                             } else {

@@ -6,8 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-
-import android.content.ClipData;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -15,11 +13,9 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -46,8 +42,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public static String userId;
     public static String uusertype;
     LinearLayout lltopBar;
-    //public Menu adminmenu;
-
 
     UserHelperClass user;
 
@@ -56,7 +50,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //setTheme(R.style.MainActivityDarkTheme);
         SharedPreferences prefsTheme = getSharedPreferences("saveTheme", MODE_PRIVATE);
         Boolean restoredTheme = prefsTheme.getBoolean("valueTheme", true);
         if (restoredTheme) {
@@ -77,8 +70,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        //adminmenu = findViewById(R.id.adminMenu);
-
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
@@ -93,10 +84,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         rUser = FirebaseAuth.getInstance().getCurrentUser();
         final String userid = rUser.getUid();
-        //Intent intent = getIntent();
-        //final String userid = intent.getStringExtra("userID");
 
-        //to access in upload video frag
         userId = rUser.getUid();
 
         reference = FirebaseDatabase.getInstance().getReference().child("users").child(rUser.getUid());
@@ -154,8 +142,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void triggerNavBar(View v) {
-        //headerName.setText(user.getName());
-        //headerUserType.setText(user.getUsertype().toUpperCase());
         SharedPreferences prefsTheme = getSharedPreferences("saveTheme", MODE_PRIVATE);
         Boolean restoredTheme = prefsTheme.getBoolean("valueTheme", true);
         if (restoredTheme) {
